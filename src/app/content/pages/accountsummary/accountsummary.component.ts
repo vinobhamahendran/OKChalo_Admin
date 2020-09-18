@@ -11,7 +11,7 @@ export class AccountsummaryComponent implements OnInit,OnDestroy{
   breadcrumb = [{label:'Home',route:'/dashboard'},{label:'Account Summary',active:true}]
   accountList : any;
   dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject<any> = new Subject();
+  // dtTrigger: Subject<any> = new Subject();
   
   constructor() { }
 
