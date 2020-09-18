@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col-xl-6">
+    <app-page-header pageTitle="Fee Schedule-Driver"></app-page-header>
+  </div>
+  <div class="col-xl-6">
+    <gx-breadcrumbs displayAs="nav" class="mb-0" [data]="breadcrumb"></gx-breadcrumbs>
+  </div>
+</div>
+<button type="button" class="btn btn-primary  mr-2 mb-2" routerLink="/feedriver-list">&#8249; Back</button>
+
+<!-- Grid -->
+<div class="row">
+
+    <!-- Grid Item -->
+    <div class="col-xl-12">
+  
+      <!-- Card -->
+      <gx-card card-title="Create Fee Schedule Driver">
+  
+        <!-- Form -->
+        <form  name="form" autocomplete="off">
+  
+          <!-- Form Group -->
+          <div class="form-group">
+            <label for="signupfee">Signup Fee</label>
+            <input type="text" class="form-control" id="signupfee" placeholder="">
+          </div>
+          <!-- /form group -->
+
+          <!-- Form Group -->
+          <div class="form-group">
+            <label for="signupcredit">Signup Credit</label>
+            <input type="email" class="form-control" id="signupcredit" placeholder="">
+          </div>
+          <!-- /form group -->
+
+          <!-- Form Group -->
+          <div class="form-group">
+            <label for="ridefee">Ride Fee</label>
+            <input  type="text" class="form-control" id="ridefee" placeholder="">
+          </div>
+          <!-- /form group -->
+
+          <!-- Form Group -->
+          <div class="form-group">
+            <label for="ridecommission">Ride % Commission</label>
+            <input  type="text" class="form-control" id="ridecommission" placeholder="">
+          </div>
+          <!-- /form group -->
+  
+          <!-- Form Group -->
+          <div class="form-group mb-0">
+            <button type="submit" class="btn btn-primary text-uppercase">Create</button>
+          </div>
+          <!-- /form group -->
+  
+        </form>
+        <!-- /form -->  
+      </gx-card>
+      <!-- /Card -->
+  
+    </div>
+</div>

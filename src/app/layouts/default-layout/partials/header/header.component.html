@@ -1,0 +1,71 @@
+<!-- Header container -->
+<div class="dt-header__container">
+
+  <!-- Brand -->
+  <div class="dt-brand">
+
+    <!-- Brand tool -->
+    <div class="dt-brand__tool" (click)="toggleNavigation()" [ngClass]="{'active':isNavFolded}">
+      <div class="hamburger-inner"></div>
+    </div>
+    <!-- /brand tool -->
+
+    <!-- Brand logo -->
+    <span class="dt-brand__logo">
+      <a class="dt-brand__logo-link" routerLink="/dashboard">
+        <img class="dt-brand__logo-img d-none d-sm-inline-block" [src]="logoImageUrl" alt="OKChalo">
+        <img class="dt-brand__logo-symbol d-sm-none" src="assets/images/logo.png" alt="OKChalo">
+      </a>
+    </span>
+    <!-- /brand logo -->
+
+  </div>
+  <!-- /brand -->
+
+  <!-- Header toolbar-->
+  <div class="dt-header__toolbar">
+    <!-- Header Menu Wrapper -->
+    <div class="dt-nav-wrapper"><!-- Header Menu -->
+      <!-- Header Menu -->
+      <ul class="dt-nav">
+        <li class="dt-nav__item" placement="bottom-right" ngbDropdown>
+
+          <!-- Dropdown Link -->
+          <a href="javascript:void(0)" class="dt-nav__link no-arrow dt-avatar-wrapper"
+             ngbDropdownToggle>
+
+            <gx-avatar [user]="currentUser" class="size-30"></gx-avatar>
+            <span class="dt-avatar-info d-none d-sm-block">
+                <span class="dt-avatar-name">{{currentUser.name}}</span>
+              </span>
+          </a>
+          <!-- /dropdown link -->
+
+          <!-- Dropdown Option -->
+          <div ngbDropdownMenu>
+            <div class="dt-avatar-wrapper flex-nowrap p-6 mt-n2 bg-gradient-purple text-white rounded-top">
+              <gx-avatar [user]="currentUser"></gx-avatar>
+              <span class="dt-avatar-info">
+                  <span class="dt-avatar-name">{{currentUser.name}}</span>
+                  <span class="f-12">{{currentUser.position}}</span>
+                </span>
+            </div>
+            <a class="dropdown-item" href="#logout" >
+              <gx-icon name="editors" [fw]="true" class="mr-2 mr-sm-1"></gx-icon>
+              Logout
+            </a>
+          </div>
+          <!-- /dropdown option -->
+
+        </li>
+      </ul>
+      <!-- /header menu -->
+
+    </div>
+    <!-- Header Menu Wrapper -->
+
+  </div>
+  <!-- /header toolbar -->
+
+</div>
+<!-- /header container -->

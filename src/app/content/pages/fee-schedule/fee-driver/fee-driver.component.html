@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-xl-6">
+    <app-page-header pageTitle="Fee Schedule-Driver"></app-page-header>
+  </div>
+  <div class="col-xl-6">
+    <gx-breadcrumbs displayAs="nav" class="mb-0" [data]="breadcrumb"></gx-breadcrumbs>
+  </div>
+</div>
+
+<button type="button" class="btn btn-primary active mr-2 mb-2" routerLink="/feedriver-create">Add New</button>
+
+<div class="row">
+    <div class="col-xl-12">    
+       <div class="dt-card">
+         <div class="dt-card__body"> 
+          <div class="table-responsive">
+            <table class="datatable" datatable [dtOptions]='dtOptions'>
+              <thead>
+              <tr>
+                <th class="text-uppercase" scope="col">Id</th>
+                <th class="text-uppercase" scope="col">Signup Fee</th>
+                <th class="text-uppercase" scope="col">Signup Credits</th>
+                <th class="text-uppercase" scope="col">Ride Fee</th>
+                <th class="text-uppercase" scope="col">Ride % Commission</th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of feeDriver">
+                  <td>{{data.id}}</td>
+                  <td>{{data.signupFee}}</td>
+                  <td>{{data.signupCredit}}</td>
+                  <td>{{data.rideFee}}</td>
+                  <td>{{data.rideCommission}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>    
+          </div>
+        </div>
+      </div>
+</div>

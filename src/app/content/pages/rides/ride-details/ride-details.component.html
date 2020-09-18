@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-xl-6">
+        <app-page-header pageTitle="Ride Details"></app-page-header>  
+    </div>
+    <div class="col-xl-6">
+        <gx-breadcrumbs displayAs="nav" class="mb-0" [data]="breadcrumb"></gx-breadcrumbs>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="dt-card">
+            <div class="dt-card__body">
+                <div class="table-responsive">
+                    <table class="datatable" datatable [dtOptions]="dtOptions" [dtTrigger]='dtTrigger'>
+                        <thead>
+                            <tr>
+                                <th class="text-uppercase" scope="col">Ride Id</th>
+                                <th class="text-uppercase" scope="col">Ride From</th>
+                                <th class="text-uppercase" scope="col">Ride To</th>
+                                <th class="text-uppercase" scope="col">Status</th>
+                                <th class="text-uppercase" scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor = 'let data of rideDetails'>
+                                <td>{{data.ride_id}}</td>
+                                <td>{{data.pickup_address}}</td>
+                                <td>{{data.drop_address}}</td>
+                                <td [ngStyle]="{'color':(data.status_id === 'Requested') ? 'red' :
+                                (data.status_id === 'Confirmed') ? 'green':''}">{{data.status_id}}</td>
+                                <td style="cursor: pointer;"><button type="button" class="btn btn-primary"
+                                (click)="viewRides(data.ride_id)">View</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

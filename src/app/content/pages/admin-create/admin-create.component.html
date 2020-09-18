@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-xl-6">
+      <app-page-header pageTitle="Admin - Create New"></app-page-header>
+    </div>
+    <div class="col-xl-6">
+      <gx-breadcrumbs displayAs="nav" class="mb-0" [data]="breadcrumb"></gx-breadcrumbs>
+    </div>
+  </div>
+  <div class="row">
+  <div class="col-12">
+  
+  <gx-card card-title="Create New Admin User">
+  
+    <form [formGroup]="createAdminForm" (ngSubmit)="onSubmit()">
+  
+      <div class="form-row mb-4">
+        <div class="col-sm-6 mb-3">
+          <label for="firstname">First name</label>
+          <input type="text" class="form-control" id="firstname" 
+          placeholder="Enter First name" name="first_name" formControlName="first_name">
+        </div>
+        <div class="col-sm-6 mb-3">
+          <label for="lastname">Last name</label>
+          <input type="text" class="form-control" id="lastname" 
+          placeholder="Enter Last name"  name="last_name" formControlName="last_name">
+        </div>
+      </div>
+  
+      <div class="form-row mb-4">
+        <div class="col-sm-6 mb-3">
+          <label for="mobile">Mobile Number</label>
+          <input type="text" class="form-control" id="mobile" 
+          placeholder="Enter Mobile Number"  name="mobile_number" formControlName="mobile_number">
+        </div>
+        <div class="col-sm-6 mb-3">
+          <label for="mobile">Email</label>
+          <input type="text" class="form-control" id="mobile"
+           placeholder="Enter Email"  name="email" formControlName="email">
+        </div>
+      </div>
+      <div class="form-row mb-4">
+        <div class="col-sm-6 mb-3">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" id="username" 
+          placeholder="Enter Username"  name="username" formControlName="username">
+        </div>
+        <div class="col-sm-6 mb-3">
+          <label for="password">Password</label>
+          <input type="text" class="form-control" id="password" 
+          placeholder="Enter Password"  name="password" formControlName="password">
+        </div>
+      </div>
+        
+      <div class="form-group mb-0">
+        <button type="submit" class="btn btn-primary text-uppercase">Create</button>
+      </div> 
+  
+    </form>
+  
+  </gx-card>
+  
+  </div>
+  </div>

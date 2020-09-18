@@ -1,0 +1,17 @@
+@import "../../../assets/css/default/theme-semidark.min.css";
+.paginate_button.page-item:hover,.paginate_button.page-item:focus,.paginate_button.page-item:active{
+    border: none !important;
+    background:none !important;
+    box-shadow:none !important;
+}
+.btn-primary:focus{
+    background-color: #512DA8;
+    border-color: #512DA8;
+}
+.page-link{
+    margin-left: -15px !important;
+}
+table.dataTable tbody th, table.dataTable tbody td{
+    padding: 10px 18px;
+
+}

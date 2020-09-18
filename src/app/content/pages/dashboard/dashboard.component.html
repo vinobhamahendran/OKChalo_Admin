@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-xl-6">
+    <app-page-header pageTitle="Dashboard"></app-page-header>
+  </div>
+  <div class="col-xl-6">
+    <gx-breadcrumbs displayAs="nav" class="mb-0" [data]="breadcrumb"></gx-breadcrumbs> 
+  </div>
+</div>
+<!-- Grid -->
+<div class="row">
+    <!-- Grid Item -->
+    <div class="col-xl-3 col-sm-6 col-12" *ngFor="let item of statistics">  
+      <gx-statistics-card gxCard [data]="item"></gx-statistics-card>  
+    </div>
+</div>
+<!-- /grid -->
+<div class="row">
+  <div class="col-xl-6">
+
+    <canvas baseChart
+    [data]="pieChart.data"
+    [labels]="pieChart.labels"
+    [chartType]="pieChart.chartType"
+    [options]="pieChart.options"
+    [colors]="pieChart.colors"
+    (chartHover)="chartHovered($event)"
+    (chartClick)="chartClicked($event)"></canvas>
+
+  </div>
+</div>
+  

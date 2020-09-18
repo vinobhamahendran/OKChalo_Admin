@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-xl-6">
+    <app-page-header pageTitle="Account Summary"></app-page-header>
+  </div>
+  <div class="col-xl-6">
+    <gx-breadcrumbs displayAs="nav" class="mb-0" [data]="breadcrumb"></gx-breadcrumbs>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xl-12">    
+    <div class="dt-card">
+      <div class="dt-card__body">
+        <div class="table-responsive">
+          <table class="dataTable" datatable [dtOptions]= "dtOptions">
+            <thead>
+            <tr>
+              <th class="text-uppercase" scope="col">Id</th>
+              <th class="text-uppercase" scope="col">Date</th>
+              <th class="text-uppercase" scope="col">DR/CR</th>
+              <th class="text-uppercase" scope="col">No Transaction</th>
+              <th class="text-uppercase" scope="col">Amount</th>
+              <th class="text-uppercase" scope="col">Balance</th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor ='let data of accountList'>
+                <td>{{data.id}}</td>
+                <td>{{data.date}}</td>
+                <td>{{data.transactionMode}}</td>
+                <td>{{data.transactionNo}}</td>
+                <td>{{data.amount}}</td>
+                <td ngValue='data.balance'>{{data.balance}}</td>
+              </tr>
+            </tbody>
+          </table>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
