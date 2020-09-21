@@ -23,7 +23,8 @@ export class RideDetailsComponent implements OnInit,OnDestroy {
       lengthMenu : [5, 15, 25],
       processing : true,
       dom : '<"wrapper"fltip>',
-      ordering : false
+      ordering:true,
+      order:[0,'desc'] //asc,desc
     }
     this.allRides();
   }

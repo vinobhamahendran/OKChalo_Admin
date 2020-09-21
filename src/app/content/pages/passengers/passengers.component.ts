@@ -23,8 +23,9 @@ export class PassengersComponent implements OnInit,OnDestroy{
       pageLength : 5,
       lengthMenu : [5, 15, 25],
       processing : true,
-      dom : '<"wrapper"flitp>',
-      ordering : false
+      dom : '<"wrapper"fltip>',
+      ordering:true,
+      order:[0,'desc'] //asc,desc
     }
     this.getAllPassengers();
   }

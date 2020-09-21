@@ -23,7 +23,8 @@ export class FeePassengerComponent implements OnInit {
       lengthMenu:[5,15,25],
       processing:true,
       dom:'<"wrapper"flitp>',
-      ordering:false
+      ordering:true,
+      order:[0,'desc'] //asc,desc
     }
     this.feePassenger = FeePassengerDb.feePassenger;
   }

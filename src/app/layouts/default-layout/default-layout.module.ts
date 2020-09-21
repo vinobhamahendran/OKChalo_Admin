@@ -31,7 +31,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PagesRoutingModule,
     NavigationModule,
     SearchBoxModule,
-    PerfectScrollbarModule
+    PerfectScrollbarModule,
+    
   ],
   declarations: [
     DefaultLayoutComponent,

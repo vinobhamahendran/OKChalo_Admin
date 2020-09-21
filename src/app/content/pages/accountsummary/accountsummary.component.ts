@@ -22,7 +22,8 @@ export class AccountsummaryComponent implements OnInit,OnDestroy{
       lengthMenu : [5, 15, 25],
       processing : true,
       dom : '<"wrapper"flitp>',
-      ordering : false
+      ordering:true,
+      order:[0,'desc'] //asc,desc
     };
     this.accountList=AccountSummaryDb.accountSummary;
 

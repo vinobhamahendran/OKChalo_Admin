@@ -21,6 +21,7 @@ import { ChartsModule } from 'ng2-charts';
 import { AdminCreateComponent } from './admin-create/admin-create.component';
 import { RideDetailsComponent } from './rides/ride-details/ride-details.component';
 import { RideViewComponent } from './rides/ride-view/ride-view.component';
+import { ToastrModule } from 'ngx-toastr';
 
 const appsRoutes: Routes = [
   {
@@ -83,7 +84,8 @@ const appsRoutes: Routes = [
     DataTablesModule,
     SharedModule,
     RouterModule.forChild(appsRoutes),
-    ChartsModule
+    ChartsModule,
+    ToastrModule.forRoot()
     
   ],
   
