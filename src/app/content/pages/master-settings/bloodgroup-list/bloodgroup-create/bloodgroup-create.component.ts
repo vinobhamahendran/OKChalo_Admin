@@ -21,7 +21,7 @@ export class BloodgroupCreateComponent implements OnInit {
   }
   opensuccessalert()
   {
-    Swal.fire('Success', 'Language Added Successfully!', 'success');
+    Swal.fire('Success', 'Blood Group Added Successfully!', 'success');
   }
 
   onSubmit(){
@@ -30,10 +30,6 @@ export class BloodgroupCreateComponent implements OnInit {
       console.log(res);
       this.modal.close();
       this.opensuccessalert();
-      setTimeout(() => {
-        parent.location.reload();
-      }, 1000);
-
     })
   }
 

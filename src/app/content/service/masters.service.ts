@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable, Subject, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import {environment} from 'src/environments/environment';
 
 @Injectable({
@@ -11,6 +11,12 @@ export class MastersService {
   URL = environment.httpUrl;
 
   constructor(private http:HttpClient) { }
+
+  private _refreshNeeded=new Subject<void>();
+
+  get refreshNeeded(){
+    return this._refreshNeeded;
+  }
 
   getLanguageList():Observable<any>{
     return this.http.get(`${this.URL}languages/list`).pipe(
@@ -30,14 +36,35 @@ export class MastersService {
     )
   }
 
+  getMakeList():Observable<any>{
+    return this.http.get(`${this.URL}make/list`).pipe(
+      catchError(this.errorHandler)
+    )
+  }
+
   createLanguage(data:any):Observable<any>{
     return this.http.post(`${this.URL}languages/create`,data).pipe(
+      tap(() =>{
+        this._refreshNeeded.next();
+      }),
       catchError(this.errorHandler)
     )
   }
 
   createBloodGroup(data:any):Observable<any>{
     return this.http.post(`${this.URL}bloodgroups/create`,data).pipe(
+      tap(() =>{
+        this._refreshNeeded.next();
+      }),
+      catchError(this.errorHandler)
+    )
+  }
+
+  createMake(data:any):Observable<any>{
+    return this.http.post(`${this.URL}make/create`,data).pipe(
+      tap(() =>{
+        this._refreshNeeded.next();
+      }),
       catchError(this.errorHandler)
     )
   }

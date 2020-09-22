@@ -29,6 +29,8 @@ import { StatusListComponent } from './master-settings/status-list/status-list.c
 import { LangCreateComponent } from './master-settings/lang-list/lang-create/lang-create.component';
 import { BloodgroupCreateComponent } from './master-settings/bloodgroup-list/bloodgroup-create/bloodgroup-create.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { MakeListComponent } from './master-settings/make-list/make-list.component';
+import { MakeCreateComponent } from './master-settings/make-list/make-create/make-create.component';
 
 
 const appsRoutes: Routes = [
@@ -99,6 +101,10 @@ const appsRoutes: Routes = [
   {
     path:'ridestatus-list',
     component:StatusListComponent
+  },
+  {
+    path:'make-list',
+    component:MakeListComponent
   }
 ];
 
@@ -136,6 +142,8 @@ const appsRoutes: Routes = [
     StatusListComponent,
     LangCreateComponent,
     BloodgroupCreateComponent,
+    MakeListComponent,
+    MakeCreateComponent,
     
   ]
 })

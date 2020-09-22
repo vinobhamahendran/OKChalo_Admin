@@ -7,13 +7,20 @@
     </div>
     <div class="">
         <form [formGroup]='createLanguageForm' (ngSubmit)='onSubmit()'>
-            <div class="form-group">
-                <input type="text" class="form-control" id="language" placeholder="Enter Language Name" formControlName="language">
-            </div>
-            <div class="form-group text-center">
-                <button type="submit" class="btn btn-primary text-uppercase" >Save</button>
-                <button type="reset" class="btn btn-primary text-uppercase ml-3">Reset</button>
-            </div>
+            <div class="form-group form-row">
+                <label class="col-xl-3 col-form-label text-sm-right" for="name">Language</label>
+      
+                <div class="col-xl-9">
+                  <input type="text" class="form-control" id="name"
+                   placeholder="Enter Language" formControlName="language">
+                </div>
+              </div>
+              <div class="form-group form-row">
+                <div class="col-xl-9 offset-xl-3">
+                    <button type="submit" class="btn btn-primary text-uppercase">Save</button>
+                    <button type="reset" class="btn btn-primary text-uppercase ml-3">Reset</button>
+                </div>
+              </div> 
         </form>
     </div>
 </gx-card>

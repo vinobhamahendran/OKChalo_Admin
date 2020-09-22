@@ -1,40 +1,35 @@
 <div class="row">
   <div class="col-xl-6">
-    <app-page-header pageTitle="Master Setting - Blood Group"></app-page-header>
+    <app-page-header pageTitle="Master Setting - Make"></app-page-header>
   </div>
   <div class="col-xl-6">
     <gx-breadcrumbs displayAs="nav" class="mb-0" [data]="breadcrumb"></gx-breadcrumbs>
   </div>
 </div>
 <gx-card>
-  <card-header class="mb-5" card-title="Blood Group List">
+  <card-header class="mb-5" card-title="Make List">
 
     <card-tool>
-      <button type="button" class="btn btn-primary btn-sm" (click)="addbloodGroupModal()">Add New</button>
+      <button type="button" class="btn btn-primary btn-sm" (click)="addMakeModal()">Add New</button>
     </card-tool>
 
   </card-header>
-
   <hr class="border-dashed my-8">
-
   <div class="dt-card__body p-0">
-
     <div class="dt-widget dt-widget-hover-bg">
-
-      <div class="dt-widget__item" *ngFor="let data of bloodGroupData">
+      <div class="dt-widget__item" *ngFor="let data of makeListdata">
 
         <div class="dt-widget__img align-self-center">
           <div class="dt-widget__title d-flex mb-4">
             <span class="dot-shape dot-shape-lg mr-2"></span>
           </div>
         </div>
-
-        <div class="dt-widget__info">
+        <div class="dt-widget__info text-truncate">
           <div class="dt-widget__title d-flex mb-4">
-            <span class="f-16 font-weight-500">{{data.blood_group}}</span>
+            <span class="f-16 font-weight-500">{{data.brand_name}}</span>
           </div>
-        </div>
 
+        </div>
         <div class="dt-widget__extra text-right">
           <div class="hide-content">
             <div class="action-btn-group">
@@ -48,5 +43,4 @@
 
     </div>
   </div>
-
 </gx-card>

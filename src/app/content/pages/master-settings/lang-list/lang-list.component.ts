@@ -14,7 +14,10 @@ export class LangListComponent implements OnInit {
   langList:any;
   constructor(private service : MastersService,private router :Router,private modelService:NgbModal) { }
 
-  ngOnInit(): void {  
+  ngOnInit(): void { 
+    this.service.refreshNeeded.subscribe(()=>{
+      this.languageList();
+    }) 
     this.languageList();
   }
 

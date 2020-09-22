@@ -15,7 +15,7 @@ export class LangCreateComponent implements OnInit {
   constructor(public modal : NgbActiveModal,private service : MastersService) { }
   opensuccessalert()
   {
-    Swal.fire('Success', 'Blood Group Added Successfully!', 'success');
+    Swal.fire('Success', 'Language Added Successfully!', 'success');
   }
   openfailurealert(){
     Swal.fire('Error', 'Failure!', 'error');
@@ -30,11 +30,7 @@ export class LangCreateComponent implements OnInit {
     console.log(this.createLanguageForm.value);
     this.service.createLanguage(this.createLanguageForm.value).subscribe(res =>{
       this.modal.close();
-      this.opensuccessalert();
-      setTimeout(() => {
-        parent.location.reload();
-      }, 1000);
-      
+      this.opensuccessalert();     
     })
     
   }

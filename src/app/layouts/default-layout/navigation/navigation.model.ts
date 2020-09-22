@@ -139,6 +139,13 @@ export class NavigationModel implements NavigationModelInterface {
                 icon:'',
                 url:'/ridestatus-list'
               },
+              {
+                id:'make',
+                title:'Make',
+                type:'item',
+                icon:'',
+                url:'/make-list'
+              }
             ]
           }
          

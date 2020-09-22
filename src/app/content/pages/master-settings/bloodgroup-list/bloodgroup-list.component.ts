@@ -15,6 +15,9 @@ export class BloodgroupListComponent implements OnInit {
   constructor(private service : MastersService,private router :Router,private modelService:NgbModal) { }
 
   ngOnInit(): void {
+    this.service.refreshNeeded.subscribe(()=>{
+      this.bloodGroupList();
+    })
     this.bloodGroupList();
   }
 
