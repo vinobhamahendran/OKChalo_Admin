@@ -1,0 +1,70 @@
+<div class="row">
+    <div class="col-xl-6">
+      <app-page-header pageTitle="Master Setting - Blood Group"></app-page-header>
+    </div>
+    <div class="col-xl-6">
+      <gx-breadcrumbs displayAs="nav" class="mb-0" [data]="breadcrumb"></gx-breadcrumbs>
+    </div>
+  </div>
+<gx-card>
+    <!-- Card Header -->
+<card-header class="mb-5" card-title="Blood Group List">
+
+    <!-- Card Tools -->
+    <card-tool>
+      <button type="button" class="btn btn-primary btn-sm" (click)="addbloodGroupModal()">Add New</button>
+    </card-tool>
+    <!-- /card tools -->
+  
+  </card-header>
+  <!-- /card header -->
+  <hr class="border-dashed my-8"> 
+  <!-- Card Body -->
+  <div class="dt-card__body p-0">
+    <!-- Widget -->
+    <div class="dt-widget dt-widget-hover-bg">
+  
+      <!-- Widget Item -->
+      <div class="dt-widget__item" *ngFor="let data of bloodGroupData">
+  
+        <!-- Widget Image -->
+        <div class="dt-widget__img align-self-center">
+          <div class="dt-widget__title d-flex">
+            <span class="f-16 font-weight-500 idhide">{{data.blood_group_id}}</span>
+            <span class="dot-shape dot-shape-lg mr-2"></span>
+          </div>
+        </div>
+        <!-- /widget image -->
+  
+        <!-- Widget Info -->
+        <div class="dt-widget__info text-truncate">
+          <div class="dt-widget__title d-flex mb-0">
+            <span class="f-16 font-weight-500">{{data.blood_group}}</span>
+          </div>
+        </div>
+        <!-- /widget info -->
+  
+        <!-- Widget Extra -->
+        <div class="dt-widget__extra text-right">
+          <!-- Hide Content -->
+          <div class="hide-content">
+            <!-- Action Button Group -->
+            <div class="action-btn-group">
+              <button class="btn btn-primary btn-sm">Edit</button>
+              <button class="btn btn-secondary btn-sm">Delete</button>
+            </div>
+            <!-- /action button group -->
+          </div>
+          <!-- /hide content -->
+        </div>
+        <!-- /widget extra -->
+  
+      </div>
+      <!-- /widgets item -->
+  
+    </div>
+    <!-- /widget -->
+  </div>
+  <!-- /card body -->
+  
+</gx-card>

@@ -1,0 +1,24 @@
+.close:focus{
+    outline: none;
+}
+.modal-header .close{
+    margin: -4.6rem -2.6rem -1.6rem auto;
+    font-size: 4.1rem;
+}
+.modal-header{
+    border-bottom: none;
+    padding: 0.6rem 0.6rem;
+}
+.dt-card{
+    margin-bottom: unset;
+}
+.modal-content{
+    box-shadow:unset !important;
+    border:unset !important;
+}
+@media (min-width: 576px){
+    .modal-content{
+        box-shadow:unset !important;
+        border:unset !important;
+    }
+}

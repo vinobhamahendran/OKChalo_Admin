@@ -10,6 +10,7 @@ import { RideService } from '@app/content/service/ride.service';
 export class RideViewComponent implements OnInit {
   breadcrumb = [{label:'Home',route:'/dashboard'},{label:'Ride Details',route:'/ride-details'},{label:'View Ride-Details',active:true}]
   rideId : any;
+  viewRides:any;
   constructor(private router:Router,private activatedRoute : ActivatedRoute,private service : RideService) { }
 
 
@@ -22,6 +23,7 @@ export class RideViewComponent implements OnInit {
     this.service.getRideDetails(this.rideId).subscribe(res =>
       {
         console.log(res);
+        this.viewRides = res;
       })
   }
 }

@@ -14,23 +14,27 @@
           <table class="dataTable" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
             <thead>
               <tr>
-                <th class="text-uppercase" scope="col">Driver Id</th>
+                <th class="text-uppercase idhide" scope="col">ID</th>
                 <th class="text-uppercase" scope="col">Name</th>
                 <th class="text-uppercase" scope="col">Mobile</th>
                 <th class="text-uppercase" scope="col">Gender</th>
                 <th class="text-uppercase" scope="col">City</th>
-                <th class="text-uppercase" scope="col">Status</th>
+                <th class="text-uppercase" scope="col">Blood Group</th>
+                <th class="text-uppercase" scope="col">Language</th>
+                <!-- <th class="text-uppercase" scope="col">Status</th> -->
                 <th class="text-uppercase" scope="col">Actions</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor='let data of drivers'>
-                <td>{{data.driver_id}}</td>
+                <td class="idhide">{{data.driver_id}}</td>
                 <td>{{data.first_name +' '+data.last_name}}</td>
                 <td>{{data.mobile_number}}</td>
                 <td>{{data.gender}}</td>
                 <td>{{data.city}}</td>
-                <td>{{data.activation_status}}</td>
+                <td>{{data.blood_group_id}}</td>
+                <td>{{data.language_id}}</td>
+                <!-- <td>{{data.activation_status}}</td> -->
                 <td style="cursor: pointer;"><button type="button" class="btn btn-primary"
                     (click)="viewItem(data)">View</button></td>
               </tr>

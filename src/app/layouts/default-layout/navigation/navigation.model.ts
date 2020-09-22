@@ -7,8 +7,7 @@ export class NavigationModel implements NavigationModelInterface {
     this.navigation = [
       {
         id: 'main',
-        title: 'Main',
-        
+        title: 'Main',        
         type: 'group',
         icon: '',
         children: [
@@ -103,10 +102,46 @@ export class NavigationModel implements NavigationModelInterface {
                 type:'item',
                 icon:'',
                 url:'/admin-create'
+              },
+              {
+                id:'admin-list',
+                title:'Admin List',
+                type:'item',
+                icon:'',
+                url:'/admin-list'
               }
             ]
+          },
+          {
+            id:'setting-master',
+            title:'Masters',
+            type:'collapse',
+            icon:'settings',
+            children:[
+              {
+                id:'language',
+                title:'Language',
+                type:'item',
+                icon:'',
+                url:'/lang-list'
+              },
+              {
+                id:'blood-group',
+                title:'Blood Group',
+                type:'item',
+                icon:'',
+                url:'/bloodgroup-list'
+              },
+              {
+                id:'status',
+                title:'Status',
+                type:'item',
+                icon:'',
+                url:'/ridestatus-list'
+              },
+            ]
           }
-          
+         
         ]
       }
     ];

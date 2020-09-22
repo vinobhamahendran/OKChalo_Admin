@@ -39,23 +39,15 @@
               "node_modules/datatables.net-dt/css/jquery.dataTables.css",
               "node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/ngx-toastr/toastr.css"
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/sweetalert2/src/sweetalert2.scss"
             ],
             "scripts": [
-              "node_modules/amcharts3/amcharts/amcharts.js",
-              "node_modules/amcharts3/amcharts/serial.js",
-              "node_modules/amcharts3/amcharts/pie.js",
-              "node_modules/amcharts3/amcharts/gauge.js",
-              "node_modules/ammap3/ammap/ammap.js",
-              "node_modules/ammap3/ammap/maps/js/continentsLow.js",
-              "node_modules/ammap3/ammap/maps/js/worldLow.js",
-              "node_modules/amcharts3/amcharts/plugins/animate/animate.min.js",
-              "node_modules/amcharts3/amcharts/themes/light.js",
-              "node_modules/amcharts3/amcharts/plugins/responsive/responsive.min.js",
               "node_modules/jquery/dist/jquery.js",
               "node_modules/datatables.net/js/jquery.dataTables.js",
               "node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js",
-              "node_modules/bootstrap/dist/js/bootstrap.js"
+              "node_modules/bootstrap/dist/js/bootstrap.js",
+              "node_modules/sweetalert2/dist/sweetalert2.js"
               
             ]
           },

@@ -22,6 +22,14 @@ import { AdminCreateComponent } from './admin-create/admin-create.component';
 import { RideDetailsComponent } from './rides/ride-details/ride-details.component';
 import { RideViewComponent } from './rides/ride-view/ride-view.component';
 import { ToastrModule } from 'ngx-toastr';
+import { AdminListComponent } from './admin-list/admin-list.component';
+import { LangListComponent } from './master-settings/lang-list/lang-list.component';
+import { BloodgroupListComponent } from './master-settings/bloodgroup-list/bloodgroup-list.component';
+import { StatusListComponent } from './master-settings/status-list/status-list.component';
+import { LangCreateComponent } from './master-settings/lang-list/lang-create/lang-create.component';
+import { BloodgroupCreateComponent } from './master-settings/bloodgroup-list/bloodgroup-create/bloodgroup-create.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
 
 const appsRoutes: Routes = [
   {
@@ -69,12 +77,28 @@ const appsRoutes: Routes = [
     component:AdminCreateComponent
   },
   {
+    path:'admin-list',
+    component:AdminListComponent
+  },
+  {
     path:'ride-details',
     component:RideDetailsComponent
   },
   {
     path:'view-ride-details/:id',
     component:RideViewComponent
+  },
+  {
+    path:'lang-list',
+    component:LangListComponent
+  },
+  {
+    path:'bloodgroup-list',
+    component:BloodgroupListComponent
+  },
+  {
+    path:'ridestatus-list',
+    component:StatusListComponent
   }
 ];
 
@@ -85,7 +109,8 @@ const appsRoutes: Routes = [
     SharedModule,
     RouterModule.forChild(appsRoutes),
     ChartsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    SweetAlert2Module.forRoot(),
     
   ],
   
@@ -105,6 +130,12 @@ const appsRoutes: Routes = [
     AdminCreateComponent,
     RideDetailsComponent,
     RideViewComponent,
+    AdminListComponent,
+    LangListComponent,
+    BloodgroupListComponent,
+    StatusListComponent,
+    LangCreateComponent,
+    BloodgroupCreateComponent,
     
   ]
 })

@@ -14,4 +14,7 @@ export class AdminService {
   createAdmin(data:any):Observable<any>{
     return this.http.post(`${this.URL}admin/create`, data);
   }
+  getAdmin():Observable<any>{
+    return this.http.get(`${this.URL}admin/list`);
+  }
 }

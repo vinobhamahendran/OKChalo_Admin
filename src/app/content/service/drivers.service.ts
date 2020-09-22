@@ -20,7 +20,7 @@ export class DriversService {
     return this.http.post(`${this.URL}drivers/create/`,data);
   }
 
-  getDriver(id : number):Observable<any>{
-    return this.http.get<any>(this.URL);
+  getDriverById(id : number):Observable<any>{
+    return this.http.get<any>(`${this.URL}drivers/get/${id}`);
   }
 }

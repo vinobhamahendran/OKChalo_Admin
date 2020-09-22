@@ -11,57 +11,52 @@
 <div class="row">
     <div class="col-xl-12">
         <gx-card card-title="Ride Details">
-           
-                <div class="form-row mb-4">
-                    <div class="col-sm-6  form-group">
+          
+                
+                    <div class="form-group">
                       <label class="col-sm-6 text-black" for="firstname">Ride Id</label>
-                      <span  class="col-sm-6" id="firstname" ></span>
+                      <span  class="col-sm-6" id="firstname" >{{viewRides.ride_id}}</span>
                     </div>
-                    <div class="col-sm-6  form-group">
+                    <div class="form-group">
                         <label class="col-sm-6" for="firstname">Status</label>
-                        <span  class="col-sm-6" id="firstname" ></span>
+                        <span  class="col-sm-6" id="firstname" >{{viewRides.status}}</span>
                       </div>
-                  </div>
-                <div class="form-row mb-4">
-                    <div class="col-sm-6  form-group">
+                
+                    <div class="form-group">
                       <label class="col-sm-6" for="firstname">Customer name</label>
-                      <span  class="col-sm-6" id="firstname" ></span>
+                      <span  class="col-sm-6" id="firstname" >{{viewRides.first_name+ ' ' + viewRides.last_name}}</span>
                     </div>
-                    <div class="col-sm-6  form-group">
+                    <div class="form-group">
                         <label class="col-sm-6" for="firstname">Customer MobileNumber</label>
-                        <span  class="col-sm-6" id="firstname" ></span>
+                        <span  class="col-sm-6" id="firstname" >{{viewRides.mobile_number}}</span>
                       </div>
-                  </div>
-                  <div class="form-row mb-4">
-                    <div class="col-sm-6  form-group">
+                  
+                    <div class="form-group">
                       <label class="col-sm-6" for="firstname">Driver Name</label>
-                      <span  class="col-sm-6" id="firstname" ></span>
+                      <span  class="col-sm-6" id="firstname" >{{viewRides.driver_fname + ' ' + viewRides.driver_lname}}</span>
                     </div>
-                    <div class="col-sm-6  form-group">
+                    <div class="form-group">
                         <label class="col-sm-6" for="firstname">Driver MobileNumber</label>
-                        <span  class="col-sm-6" id="firstname" ></span>
+                        <span  class="col-sm-6" id="firstname" >{{viewRides.driver_mobile}}</span>
                       </div>
-                  </div>
-                  <div class="form-row mb-4">
-                    <div class="col-sm-6  form-group">
+                  
+                    <div class="form-group">
                       <label class="col-sm-6" for="firstname">Pickup Location</label>
-                      <span  class="col-sm-6" id="firstname" ></span>
+                      <span  class="col-sm-6" id="firstname" >{{viewRides.pickup_address}}</span>
                     </div>
-                    <div class="col-sm-6  form-group">
+                    <div class="form-group">
                         <label class="col-sm-6" for="firstname">Drop Location</label>
-                        <span  class="col-sm-6" id="firstname" ></span>
+                        <span  class="col-sm-6" id="firstname" >{{viewRides.drop_address}}</span>
                       </div>
-                  </div>
-                  <div class="form-row mb-4">
-                    <div class="col-sm-6 form-group">
+                  
+                    <!-- <div class="form-group">
                       <label class="col-sm-6" for="firstname">Ride Start Time</label>
                       <span  class="col-sm-6" id="firstname" ></span>
                     </div>
-                    <div class="col-sm-6 form-group">
+                    <div class="form-group">
                         <label class="col-sm-6" for="firstname">Ride End Time</label>
                         <span  class="col-sm-6" id="firstname" ></span>
-                      </div>
-                  </div>
+                      </div> -->
            
         </gx-card>
     </div>
