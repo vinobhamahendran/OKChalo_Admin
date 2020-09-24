@@ -14,9 +14,7 @@ import { AccountsummaryComponent } from './accountsummary/accountsummary.compone
 import { PassengersComponent } from './passengers/passengers.component';
 import { DriverCreateComponent } from './driver/driver-create/driver-create.component';
 import { DriverListComponent } from './driver/driver-list/driver-list.component';
-import { PassengerViewComponent } from './passengers/passenger-view/passenger-view.component';
 import { DataTablesModule } from 'angular-datatables';
-import { DriverViewComponent } from './driver/driver-view/driver-view.component';
 import { ChartsModule } from 'ng2-charts';
 import { AdminCreateComponent } from './admin-create/admin-create.component';
 import { RideDetailsComponent } from './rides/ride-details/ride-details.component';
@@ -31,6 +29,8 @@ import { BloodgroupCreateComponent } from './master-settings/bloodgroup-list/blo
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { MakeListComponent } from './master-settings/make-list/make-list.component';
 import { MakeCreateComponent } from './master-settings/make-list/make-create/make-create.component';
+import { ViewDriverComponent } from './driver/view-driver/view-driver.component';
+import { ViewPassengersComponent } from './passengers/view-passengers/view-passengers.component';
 
 
 const appsRoutes: Routes = [
@@ -105,7 +105,8 @@ const appsRoutes: Routes = [
   {
     path:'make-list',
     component:MakeListComponent
-  }
+  },
+  
 ];
 
 @NgModule({
@@ -116,8 +117,7 @@ const appsRoutes: Routes = [
     RouterModule.forChild(appsRoutes),
     ChartsModule,
     ToastrModule.forRoot(),
-    SweetAlert2Module.forRoot(),
-    
+    SweetAlert2Module.forRoot(),    
   ],
   
   declarations: [
@@ -131,8 +131,6 @@ const appsRoutes: Routes = [
     PassengersComponent,
     DriverCreateComponent,
     DriverListComponent,
-    PassengerViewComponent,
-    DriverViewComponent,
     AdminCreateComponent,
     RideDetailsComponent,
     RideViewComponent,
@@ -144,6 +142,8 @@ const appsRoutes: Routes = [
     BloodgroupCreateComponent,
     MakeListComponent,
     MakeCreateComponent,
+    ViewDriverComponent,
+    ViewPassengersComponent,
     
   ]
 })

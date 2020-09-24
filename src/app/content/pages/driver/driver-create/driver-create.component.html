@@ -11,16 +11,17 @@
 
 <gx-card card-title="Add Driver">
 
-  <form #form="ngForm" (submit)="addDriver(form)">
+  <form [formGroup]='driverform' (ngSubmit)="addDriver()">
 
     <div class="form-row mb-4">
       <div class="col-sm-6 mb-3">
         <label for="firstname">First name</label>
-        <input type="text" class="form-control" id="firstname" placeholder="First name" [(ngModel)] = "driver.first_name" name="first_name" required>
+        <input type="text" class="form-control" id="firstname" 
+        placeholder="First name" formControlName= "first_name" name="first_name" required>
       </div>
       <div class="col-sm-6 mb-3">
         <label for="lastname">Last name</label>
-        <input type="text" class="form-control" id="lastname" placeholder="Last name" [(ngModel)] = "driver.last_name" name="last_name">
+        <input type="text" class="form-control" id="lastname" placeholder="Last name" formControlName = "last_name" name="last_name">
       </div>
     </div>
 
@@ -28,11 +29,29 @@
       <div class="col-sm-6 mb-3">
         <label for="mobile">Mobile Number</label>
         <input type="text" class="form-control" id="mobile" 
-        placeholder="Mobile Number" [(ngModel)] = "driver.mobile_number" name="mobile_number" required>
+        placeholder="Mobile Number" formControlName = "mobile_number" name="mobile_number" required>
       </div>
       <div class="col-sm-6 mb-3">
-        <label for="mobile">City</label>
-        <input type="text" class="form-control" id="mobile" placeholder="Enter City" [(ngModel)] = "driver.city" name="city">
+        <label for="city">City</label>
+        <input type="text" class="form-control" id="city" placeholder="Enter City" formControlName = "city" name="city">
+      </div>
+    </div>
+    <div class="form-row mb-4">
+      <div class="col-sm-6 mb-3">
+        <label for="language">Language</label>
+        <select class="form-control" id="language" formControlName="language_id">
+          <option [ngValue]='null' disabled selected>Select Language</option>
+          <option *ngFor="let langdata of languagelist" 
+           [ngValue]="langdata.language_id">{{langdata.language}}</option>
+        </select>
+      </div>
+      <div class="col-sm-6 mb-3">
+        <label for="bloodgroup">Blood Group</label>
+        <select class="form-control" id="bloodgroup" formControlName="blood_group_id">
+          <option [ngValue]='null' disabled selected>Select Blood Group</option>
+          <option *ngFor="let bloodgroupdata of bloodGrouplist" 
+           [ngValue]="bloodgroupdata.blood_group_id">{{bloodgroupdata.blood_group}}</option>
+        </select>
       </div>
     </div>
     <div class="form-row mb-4">
@@ -41,14 +60,14 @@
       <div class="col-md-10 col-sm-9">
 
         <div class="custom-control custom-radio custom-control-inline">
-          <input type="radio" id="customRadioInline1" name="gender" class="custom-control-input" ngModel value="M"
-                 >
+          <input type="radio" id="customRadioInline1" name="gender" class="custom-control-input" value="M"
+          formControlName="gender">
           <label class="custom-control-label" for="customRadioInline1">Male</label>
         </div>
 
         <div class="custom-control custom-radio custom-control-inline">
-          <input type="radio" id="customRadioInline2" name="gender" ngModel value="F"
-                 class="custom-control-input">
+          <input type="radio" id="customRadioInline2" name="gender" value="F"
+                 class="custom-control-input" formControlName="gender">
           <label class="custom-control-label" for="customRadioInline2">Female</label>
         </div>
       </div>

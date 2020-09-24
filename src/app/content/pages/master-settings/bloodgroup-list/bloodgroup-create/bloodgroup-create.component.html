@@ -12,7 +12,12 @@
           
                     <div class="col-xl-9">
                       <input type="text" class="form-control" id="name"
-                       placeholder="Enter Blood Group" formControlName="blood_group">
+                       placeholder="Enter Blood Group" 
+                       formControlName="blood_group" 
+                       [ngClass]="{ 'is-invalid': submitted && f.blood_group.errors }">
+                       <div *ngIf="submitted && f.blood_group.errors" class="invalid-feedback">
+                           <div *ngIf='f.blood_group.errors.required'>Blood Group Name is required</div>
+                       </div>
                     </div>
                   </div>
                   <div class="form-group form-row">

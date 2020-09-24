@@ -1,49 +1,65 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MastersService } from '@app/content/service/masters.service';
 import { PassengersService } from '@app/content/service/passengers.service';
 import { PassengerModel } from '@app/data-db/model/passengersModel';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
-import { PassengerViewComponent } from './passenger-view/passenger-view.component';
+import { ViewPassengersComponent } from './view-passengers/view-passengers.component';
 
 @Component({
   selector: 'app-passengers',
   templateUrl: './passengers.component.html',
   styleUrls: ['./passengers.component.scss']
 })
-export class PassengersComponent implements OnInit,OnDestroy{
-  breadcrumb = [{label:'Home',route:'/dashboard'},{label: 'Passenger',active:true}];
-  passengers:any;
-  dtOptions : DataTables.Settings={};
-  dtTrigger: Subject<any> =new Subject();
-  constructor(private router : Router,private service:PassengersService,private modalService:NgbModal) { }
+export class PassengersComponent implements OnInit, OnDestroy {
+  breadcrumb = [{ label: 'Home', route: '/dashboard' }, { label: 'Passenger', active: true }];
+  passengers: any;
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
+  _languagelist: any;
+  _bloodgrouplist: any;
+  constructor(private router: Router, private service: PassengersService, private masterservice: MastersService,
+    private modalService: NgbModal) { }
   ngOnInit(): void {
+    this.languageList(); this.bloodgrouplist();
     this.dtOptions = {
-      pagingType : 'simple_numbers',
-      pageLength : 5,
-      lengthMenu : [5, 15, 25],
-      processing : true,
-      dom : '<"wrapper"fltip>',
-      ordering:true,
-      order:[0,'desc'] //asc,desc
+      pagingType: 'simple_numbers',
+      pageLength: 5,
+      lengthMenu: [5, 15, 25],
+      processing: true,
+      dom: '<"wrapper"fltip>',
+      ordering: true,
+      order: [0, 'desc'] //asc,desc
     }
     this.getAllPassengers();
   }
   ngOnDestroy(): void {
-   this.dtTrigger.unsubscribe();
+    this.dtTrigger.unsubscribe();
   }
 
-  getAllPassengers(){
+  getAllPassengers() {
     this.service.getAll().subscribe(res => {
-      this.passengers = res;
-      console.log(res);
+      let mergeddata = res.map((item) => Object.assign({},item,this._languagelist[item.language_id],this._bloodgrouplist[item.blood_group_id]));
+      this.passengers = mergeddata;
+      console.log(this.passengers);
       this.dtTrigger.next();
     })
   }
-  viewItem(datas : PassengerModel){
+  languageList() {
+    this.masterservice.getLanguageList().subscribe(res => {
+      this._languagelist = res;
+    })
+  }
+  bloodgrouplist() {
+    this.masterservice.getBloodGroupList().subscribe(res => {
+      this._bloodgrouplist = res;
+    })
+  }
+  viewItem(datas: any) {
     console.log(datas);
-    const ref = this.modalService.open(PassengerViewComponent,{size:'lg',centered:true,backdrop:true});
-    ref.componentInstance.datas=datas;
+    const ref = this.modalService.open(ViewPassengersComponent, { size: 'lg', centered: true, backdrop: true });
+    ref.componentInstance.datas = datas;
   }
 
 }

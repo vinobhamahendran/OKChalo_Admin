@@ -47,6 +47,7 @@
     "echarts-liquidfill": "^2.0.5",
     "firebase": "^7.21.0",
     "flag-icon-css": "^3.4.0",
+    "font-awesome": "^4.7.0",
     "jquery": "^3.5.1",
     "lodash-es": "^4.17.15",
     "masonry-layout": "^4.2.2",

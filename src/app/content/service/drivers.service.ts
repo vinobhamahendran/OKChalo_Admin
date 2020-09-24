@@ -23,4 +23,7 @@ export class DriversService {
   getDriverById(id : number):Observable<any>{
     return this.http.get<any>(`${this.URL}drivers/get/${id}`);
   }
+  getDriverByMobileno(mobile_number:any):Observable<any>{
+    return this.http.get(`${this.URL}drivers/profile/${mobile_number}`);
+  }
 }

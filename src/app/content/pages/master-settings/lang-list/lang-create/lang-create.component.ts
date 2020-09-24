@@ -1,5 +1,5 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MastersService } from '@app/content/service/masters.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
@@ -12,7 +12,8 @@ import Swal from 'sweetalert2';
 })
 export class LangCreateComponent implements OnInit {
   createLanguageForm : FormGroup;
-  constructor(public modal : NgbActiveModal,private service : MastersService) { }
+  submitted=false;
+  constructor(public modal : NgbActiveModal,private service : MastersService,public formBuilder:FormBuilder) { }
   opensuccessalert()
   {
     Swal.fire('Success', 'Language Added Successfully!', 'success');
@@ -21,13 +22,19 @@ export class LangCreateComponent implements OnInit {
     Swal.fire('Error', 'Failure!', 'error');
   }
   ngOnInit(): void {
-    this.createLanguageForm = new FormGroup({
-      language: new FormControl(),
-      active:new FormControl(0)
+    this.createLanguageForm = this.formBuilder.group({
+      language: ['',Validators.required],
+      active:[0]
     })
   }
+  get f(){
+    return this.createLanguageForm.controls;
+  }
   onSubmit(){
-    console.log(this.createLanguageForm.value);
+    this.submitted = true;
+    if(this.createLanguageForm.invalid){
+      return;
+    }
     this.service.createLanguage(this.createLanguageForm.value).subscribe(res =>{
       this.modal.close();
       this.opensuccessalert();     

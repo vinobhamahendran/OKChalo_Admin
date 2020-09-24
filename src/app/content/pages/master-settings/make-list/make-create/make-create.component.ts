@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MastersService } from '@app/content/service/masters.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
@@ -11,12 +11,16 @@ import Swal from 'sweetalert2';
 })
 export class MakeCreateComponent implements OnInit {
   makeform : FormGroup;
-  constructor(private service : MastersService,private modal:NgbActiveModal) { }
+  submitted = false;
+  constructor(private service : MastersService,public formBuilder:FormBuilder,public modal:NgbActiveModal) { }
 
   ngOnInit(): void {
-    this.makeform = new FormGroup({
-      brand_name : new FormControl()
+    this.makeform =this.formBuilder.group({
+      brand_name :['',Validators.required]
     })
+  }
+  get f(){
+    return this.makeform.controls;
   }
   opensuccessalert()
   {
@@ -24,6 +28,10 @@ export class MakeCreateComponent implements OnInit {
   }
 
   onSubmit(){
+    this.submitted = true;
+    if(this.makeform.invalid){
+      return;
+    }
     console.log(this.makeform.value);
     this.service.createMake(this.makeform.value).subscribe( res => {
       console.log(res);

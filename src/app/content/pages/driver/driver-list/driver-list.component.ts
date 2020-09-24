@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DriversService } from '@app/content/service/drivers.service';
-import { DriverModel } from '@app/data-db/model/driverModel';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { DriverViewComponent } from '../driver-view/driver-view.component';
 import { Subject } from 'rxjs';
+import { ViewDriverComponent } from '../view-driver/view-driver.component';
+import { MastersService } from '@app/content/service/masters.service';
 
 @Component({
   selector: 'app-driver-list',
@@ -15,27 +15,41 @@ export class DriverListComponent implements OnInit,OnDestroy {
   breadcrumb = [{label:'Home',route:'/dashboard'},{label: 'Driver - All Driver',active:true}];
   drivers :any;
   address:any;
+  languagelist:any=[];
+  formattedlang=[];
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
-  constructor(private service : DriversService,private router :Router,private modelService:NgbModal) { }
+  bloodgrouplist:any=[];
+  constructor(private service : DriversService,private masterservice:MastersService,private router :Router,private modelService:NgbModal) {}
 
   getAllDrivers(){
     this.service.getAllDriver().subscribe(res => {
       console.log(res);
-      this.drivers = res;
+      let mergedArray = res.map((item) => Object.assign({}, item, this.languagelist[item.language_id],this.bloodgrouplist[item.blood_group_id]));
+      console.log(mergedArray);
+      this.drivers = mergedArray;
       this.dtTrigger.next();
     }    
       )
   }
-  viewItem(datas : DriverModel){
-    const ref = this.modelService.open(DriverViewComponent,{size:'lg',centered:true,backdrop:true});
+  viewItem(datas : any){
+    const ref = this.modelService.open(ViewDriverComponent,{size:'lg',centered:true,backdrop:true});
     ref.componentInstance.datas=datas;
   }
-  editDriver(id : number){
-    console.log(id);
-    this.router.navigate(['driver-edit', id]);
+  getlanguageList(){
+    this.masterservice.getLanguageList().subscribe(res=>{
+      this.languagelist=res;
+    })
+  }
+
+  getBloodgroup(){
+    this.masterservice.getBloodGroupList().subscribe(res =>{
+      this.bloodgrouplist = res;
+    })
   }
   ngOnInit(): void {
+    this.getlanguageList();
+    this.getBloodgroup();
     this.dtOptions = {
       pagingType : 'simple_numbers',
       pageLength : 5,
@@ -44,8 +58,6 @@ export class DriverListComponent implements OnInit,OnDestroy {
       dom : '<"wrapper"fltip>',
       ordering:true,
       order:[0,'desc'] //asc,desc
-      
-
     };
     this.getAllDrivers();
   }
@@ -54,3 +66,11 @@ export class DriverListComponent implements OnInit,OnDestroy {
   }
 
 }
+// const mergeById = (a1, a2 , a3) =>
+//     a1.map(itm => ({
+//         ...a2.find((item) => (item.language_id === itm.language_id) && item),
+//         ...a3.find((item1) => (item1.blood_group_id === itm.blood_group_id) && item1),
+//         ...itm
+//     }));
+
+// console.log(mergeById(res, this.languagelist,this.bloodgrouplist));

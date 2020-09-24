@@ -11,7 +11,11 @@
           
                     <div class="col-xl-9">
                       <input type="text" class="form-control" id="name"
-                       placeholder="Enter Brand Name" formControlName="brand_name">
+                       placeholder="Enter Brand Name" 
+                       formControlName="brand_name" [ngClass]="{'is-invalid' : submitted && f.brand_name.errors}">
+                       <div *ngIf="submitted && f.brand_name.errors" class="invalid-feedback">
+                           <div *ngIf="f.brand_name.errors.required">Brand name is required</div>
+                       </div>
                     </div>
                   </div>
                   <div class="form-group form-row">

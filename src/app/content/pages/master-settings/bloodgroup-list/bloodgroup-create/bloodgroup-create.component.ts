@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MastersService } from '@app/content/service/masters.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
@@ -12,12 +12,16 @@ import Swal from 'sweetalert2';
 export class BloodgroupCreateComponent implements OnInit {
 
   createBloodgroupform : FormGroup;
-  constructor(public modal : NgbActiveModal,private service:MastersService) { }
+  submitted =false;
+  constructor(public modal : NgbActiveModal,public formBuilder:FormBuilder,private service:MastersService) { }
 
   ngOnInit(): void {
-    this.createBloodgroupform = new FormGroup({
-      blood_group : new FormControl()
+    this.createBloodgroupform = this.formBuilder.group({
+      blood_group :['',Validators.required]
     });
+  }
+  get f(){
+    return this.createBloodgroupform.controls;
   }
   opensuccessalert()
   {
@@ -25,6 +29,10 @@ export class BloodgroupCreateComponent implements OnInit {
   }
 
   onSubmit(){
+    this.submitted =true;
+    if(this.createBloodgroupform.invalid){
+      return;
+    }
     console.log(this.createBloodgroupform.value);
     this.service.createBloodGroup(this.createBloodgroupform.value).subscribe(res =>{
       console.log(res);

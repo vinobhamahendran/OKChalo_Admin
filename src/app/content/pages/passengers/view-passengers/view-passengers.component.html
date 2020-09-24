@@ -1,0 +1,69 @@
+<card-header class="bg-primary text-white">
+    <card-heading>
+        <h1 style="color: #ffffff;">Passenger Details</h1>
+    </card-heading>
+    <card-tool><div ngbDropdown placement="bottom-right">
+        <button type="button" class="close" data-dismiss="modal"
+            (click)="modal.dismiss('Cross click')">×</button>
+    </div></card-tool>
+</card-header>
+<card-body>
+    <div class="text-center mb-5">
+    <gx-avatar [user]="currentUser.thumb" class="user-avatar size-100"></gx-avatar>
+    <div class="dt-avatar-info mb-4">
+        <h4 class="h2 dt-avatar-name mb-1">{{datas.first_name + ' ' + datas.last_name}}</h4>
+        <span class="d-block">{{datas.customer_id}}</span>
+    </div>        
+    </div>
+    <ul class="dt-list dt-list-col-4">
+        <li class="dt-list__item">
+            <div class="media-body">
+                <span class="d-block text-light-gray f-15 mb-1">Mobile Number</span>
+                <p class="h5 mb-4">{{datas.mobile_number}}</p>
+            </div>
+        </li> 
+        <li class="dt-list__item">
+            <div class="media-body">
+                <span class="d-block text-light-gray f-15 mb-2">Gender</span>
+                <p class="h5 mb-4">{{datas.gender}}</p>
+            </div>
+        </li> 
+        <li class="dt-list__item">
+            <div class="media-body">
+                <span class="d-block text-light-gray f-15 mb-2">Date of Birth</span>
+                <p class="h5 mb-4">{{datas.date_of_birth}}</p>
+            </div>
+        </li>
+        <li class="dt-list__item">
+            <div class="media-body">
+                <span class="d-block text-light-gray f-15 mb-1">City</span>
+                <p class="h5 mb-4">{{datas.city}}</p>
+            </div>
+        </li> 
+        <li class="dt-list__item">
+            <div class="media-body">
+                <span class="d-block text-light-gray f-15 mb-1">Blood Group</span>
+                <p class="h5 mb-4">{{datas.blood_group}}</p>
+            </div>
+        </li> 
+        <li class="dt-list__item">
+            <div class="media-body">
+                <span class="d-block text-light-gray f-15 mb-1">Language</span>
+                <p class="h5 mb-4">{{datas.language}}</p>
+            </div>
+        </li> 
+        <li class="dt-list__item">
+            <div class="media-body">
+                <span class="d-block text-light-gray f-15 mb-1">Registered Date</span>
+                <p class="h5 mb-4">{{datas.registered_date}}</p>
+            </div>
+        </li>
+        <li class="dt-list__item">
+            <div class="media-body">
+                <span class="d-block text-light-gray f-15 mb-1">Default Range</span>
+                <p class="h5 mb-4">{{datas.default_range}}</p>
+            </div>
+        </li>  
+    </ul>
+    
+</card-body>
