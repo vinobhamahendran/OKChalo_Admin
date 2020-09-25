@@ -19,7 +19,6 @@ import { ChartsModule } from 'ng2-charts';
 import { AdminCreateComponent } from './admin-create/admin-create.component';
 import { RideDetailsComponent } from './rides/ride-details/ride-details.component';
 import { RideViewComponent } from './rides/ride-view/ride-view.component';
-import { ToastrModule } from 'ngx-toastr';
 import { AdminListComponent } from './admin-list/admin-list.component';
 import { LangListComponent } from './master-settings/lang-list/lang-list.component';
 import { BloodgroupListComponent } from './master-settings/bloodgroup-list/bloodgroup-list.component';
@@ -116,7 +115,6 @@ const appsRoutes: Routes = [
     SharedModule,
     RouterModule.forChild(appsRoutes),
     ChartsModule,
-    ToastrModule.forRoot(),
     SweetAlert2Module.forRoot(),    
   ],
   

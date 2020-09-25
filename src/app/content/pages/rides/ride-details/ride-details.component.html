@@ -10,11 +10,26 @@
     <div class="col-xl-12">
         <div class="dt-card">
             <div class="dt-card__body">
+                <div class="dataTables_wrapper mb-4">
+                    <div class="dataTables_filter">
+                        <!-- <label for="status">Search by status </label> -->
+                      <select class="form-control form-control-sm statusfilter" id="status">
+                        <option [ngValue]='null' disabled selected>Filter by Status</option>
+                        <option *ngFor="let status of _statuslist" 
+                         [ngValue]="status.status">{{status.status}}</option>
+                      </select>
+                   
+                    </div>
+                </div>
                 <div class="table-responsive">
-                    <table class="datatable" datatable [dtOptions]="dtOptions" [dtTrigger]='dtTrigger'>
+                    <table class="datatable" id="dataTables-example" datatable [dtOptions]="dtOptions" [dtTrigger]='dtTrigger'>
                         <thead>
                             <tr>
-                                <th class="text-uppercase" scope="col">Ride Id</th>
+                                <th class="text-uppercase idhide" scope="col">Ride id</th>
+                                <th class="text-uppercase" scope="col">Booking Number</th>
+                                <th class="text-uppercase" scope="col">Requested Date Time</th>
+                                <th class="text-uppercase" scope="col">Passenger Name</th>
+                                <th class="text-uppercase" scope="col">Driver Name</th>
                                 <th class="text-uppercase" scope="col">Ride From</th>
                                 <th class="text-uppercase" scope="col">Ride To</th>
                                 <th class="text-uppercase" scope="col">Status</th>
@@ -23,13 +38,18 @@
                         </thead>
                         <tbody>
                             <tr *ngFor = 'let data of rideDetails'>
-                                <td>{{data.ride_id}}</td>
+                                <td class="idhide">{{data.ride_id}}</td>
+                                <td>{{data.booking_number}}</td>
+                                <td>{{data.requested_datetime}}</td>
+                                <td>{{data.customer.first_name + ' ' + data.customer.last_name}}</td>
+                                <td>{{data.driver.first_name + data.driver.last_name}}</td>
                                 <td>{{data.pickup_address}}</td>
                                 <td>{{data.drop_address}}</td>
-                                <td [ngStyle]="{'color':(data.status_id === 'Requested') ? 'red' :
-                                (data.status_id === 'Confirmed') ? 'green':''}">{{data.status_id}}</td>
+                                <td [ngClass]="data.status.status">{{data.status.status}}</td>
                                 <td style="cursor: pointer;"><button type="button" class="btn btn-primary"
-                                (click)="viewRides(data.ride_id)">View</button></td>
+                                (click)="viewRides(data.ride_id)" 
+                                [ngStyle]="{'display':(data.status.status === 'Requested') ? 'none' :
+                                (data.status.status === 'Confirmed') ? 'block':''}">View</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -38,3 +58,6 @@
         </div>
     </div>
 </div>
+
+<!-- [ngStyle]="{'color':(data.status_id === 'Requested') ? 'red' :
+                                (data.status_id === 'Confirmed') ? 'green':''}" -->

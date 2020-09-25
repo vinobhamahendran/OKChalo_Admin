@@ -1,63 +1,97 @@
 <div class="row">
-    <div class="col-xl-6">
-        <app-page-header pageTitle="View Ride Details"></app-page-header> 
-    </div>
-    <div class="col-xl-6">
-        <gx-breadcrumbs displayAs="nav" class="mb-0" [data]="breadcrumb"></gx-breadcrumbs>
-    </div>
+  <div class="col-xl-6">
+    <app-page-header pageTitle="View Ride Details"></app-page-header>
+  </div>
+  <div class="col-xl-6">
+    <gx-breadcrumbs displayAs="nav" class="mb-0" [data]="breadcrumb"></gx-breadcrumbs>
+  </div>
 </div>
 <button type="button" class="btn btn-primary  mr-2 mb-2" routerLink="/ride-details">&#8249; Back</button>
 
 <div class="row">
-    <div class="col-xl-12">
-        <gx-card card-title="Ride Details">
-          
-                
-                    <div class="form-group">
-                      <label class="col-sm-6 text-black" for="firstname">Ride Id</label>
-                      <span  class="col-sm-6" id="firstname" >{{viewRides.ride_id}}</span>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-6" for="firstname">Status</label>
-                        <span  class="col-sm-6" id="firstname" >{{viewRides.status}}</span>
-                      </div>
-                
-                    <div class="form-group">
-                      <label class="col-sm-6" for="firstname">Customer name</label>
-                      <span  class="col-sm-6" id="firstname" >{{viewRides.first_name+ ' ' + viewRides.last_name}}</span>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-6" for="firstname">Customer MobileNumber</label>
-                        <span  class="col-sm-6" id="firstname" >{{viewRides.mobile_number}}</span>
-                      </div>
-                  
-                    <div class="form-group">
-                      <label class="col-sm-6" for="firstname">Driver Name</label>
-                      <span  class="col-sm-6" id="firstname" >{{viewRides.driver_fname + ' ' + viewRides.driver_lname}}</span>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-6" for="firstname">Driver MobileNumber</label>
-                        <span  class="col-sm-6" id="firstname" >{{viewRides.driver_mobile}}</span>
-                      </div>
-                  
-                    <div class="form-group">
-                      <label class="col-sm-6" for="firstname">Pickup Location</label>
-                      <span  class="col-sm-6" id="firstname" >{{viewRides.pickup_address}}</span>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-6" for="firstname">Drop Location</label>
-                        <span  class="col-sm-6" id="firstname" >{{viewRides.drop_address}}</span>
-                      </div>
-                  
-                    <!-- <div class="form-group">
-                      <label class="col-sm-6" for="firstname">Ride Start Time</label>
-                      <span  class="col-sm-6" id="firstname" ></span>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-6" for="firstname">Ride End Time</label>
-                        <span  class="col-sm-6" id="firstname" ></span>
-                      </div> -->
-           
-        </gx-card>
-    </div>
+  <div class="col-xl-12">
+    <gx-card card-title="Ride Details">
+
+      <ul class="dt-list dt-list-col-6">
+        <li class="dt-list__item">
+          <div class="media-body">
+            <span class="d-block text-light-gray f-15 mb-3">Ride Id</span>
+            <p class="h5 mb-4">{{viewRides.ride_id}}</p>
+          </div>
+        </li>
+        <li class="dt-list__item">
+          <div class="media-body">
+            <span class="d-block text-light-gray f-15 mb-3">Status</span>
+            <p class="h5 mb-4">{{viewRides.status}}</p>
+          </div>
+        </li>
+        <li class="dt-list__item">
+          <div class="media-body">
+            <span class="d-block text-light-gray f-15 mb-3">Customer name</span>
+            <p class="h5 mb-4">{{viewRides.first_name+ ' ' + viewRides.last_name}}</p>
+          </div>
+        </li>
+        <li class="dt-list__item">
+          <div class="media-body">
+            <span class="d-block text-light-gray f-15 mb-3">Customer MobileNumber</span>
+            <p class="h5 mb-4">{{viewRides.mobile_number}}</p>
+          </div>
+        </li>
+        <li class="dt-list__item">
+          <div class="media-body">
+            <span class="d-block text-light-gray f-15 mb-3">Driver Name</span>
+            <p class="h5 mb-4">{{viewRides.driver_fname + ' ' + viewRides.driver_lname}}</p>
+          </div>
+        </li>
+        <li class="dt-list__item">
+          <div class="media-body">
+            <span class="d-block text-light-gray f-15 mb-3">Driver MobileNumber</span>
+            <p class="h5 mb-4">{{viewRides.driver_mobile}}</p>
+          </div>
+        </li>
+        <li class="dt-list__item">
+          <div class="media-body">
+            <span class="d-block text-light-gray f-15 mb-3">Pickup Location</span>
+            <p class="h5 mb-4">{{viewRides.pickup_address}}</p>
+          </div>
+        </li>
+        <li class="dt-list__item">
+          <div class="media-body">
+            <span class="d-block text-light-gray f-15 mb-3">Drop Location</span>
+            <p class="h5 mb-4">{{viewRides.drop_address}}</p>
+          </div>
+        </li>
+        <li class="dt-list__item">
+          <div class="media-body">
+            <span class="d-block text-light-gray f-15 mb-3">Pickup Gps</span>
+            <p class="h5 mb-4">{{viewRides.pickup_gps}}</p>
+          </div>
+        </li>
+        <li class="dt-list__item">
+          <div class="media-body">
+            <span class="d-block text-light-gray f-15 mb-3">Drop Gps</span>
+            <p class="h5 mb-4">{{viewRides.drop_gps}}</p>
+          </div>
+        </li>
+        <li class="dt-list__item">
+          <div class="media-body">
+            <span class="d-block text-light-gray f-15 mb-3">Requested Datetime</span>
+            <p class="h5 mb-4">{{viewRides.requested_datetime}}</p>
+          </div>
+        </li>
+        <li class="dt-list__item">
+          <div class="media-body">
+            <span class="d-block text-light-gray f-15 mb-3">Ride Start Time</span>
+            <p class="h5 mb-4">{{viewRides.ride_start_time}}</p>
+          </div>
+        </li>
+        <li class="dt-list__item">
+          <div class="media-body">
+            <span class="d-block text-light-gray f-15 mb-3">Ride End Time</span>
+            <p class="h5 mb-4">{{viewRides.ride_end_time}}</p>
+          </div>
+        </li>
+      </ul>
+    </gx-card>
+  </div>
 </div>

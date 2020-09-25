@@ -40,8 +40,15 @@ export class PassengersComponent implements OnInit, OnDestroy {
 
   getAllPassengers() {
     this.service.getAll().subscribe(res => {
-      let mergeddata = res.map((item) => Object.assign({},item,this._languagelist[item.language_id],this._bloodgrouplist[item.blood_group_id]));
-      this.passengers = mergeddata;
+    console.log(res);
+      // let mergeddata = res.map((item) => Object.assign({},item,this._languagelist[item.language_id],this._bloodgrouplist[item.blood_group_id]));
+    const mergeById = (a1, a2 , a3) =>
+    a1.map(customer => ({
+        language : {...a2.find((item) => (item.language_id === customer.language_id) && item)},
+        bloodgroup :{...a3.find((item1) => (item1.blood_group_id == customer.blood_group_id) && item1)},
+        ...customer
+    }));
+      this.passengers = mergeById(res,this._languagelist,this._bloodgrouplist);
       console.log(this.passengers);
       this.dtTrigger.next();
     })

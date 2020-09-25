@@ -25,9 +25,17 @@ export class DriverListComponent implements OnInit,OnDestroy {
   getAllDrivers(){
     this.service.getAllDriver().subscribe(res => {
       console.log(res);
-      let mergedArray = res.map((item) => Object.assign({}, item, this.languagelist[item.language_id],this.bloodgrouplist[item.blood_group_id]));
-      console.log(mergedArray);
-      this.drivers = mergedArray;
+      const mergeById = (a1, a2 , a3) =>
+    a1.map(driver => ({
+        language:{...a2.find((item) => (item.language_id === driver.language_id) && item)},
+        bloodgroup: {...a3.find((item1) => (item1.blood_group_id === driver.blood_group_id) && item1)},
+        ...driver
+    }));
+
+  console.log(mergeById(res, this.languagelist,this.bloodgrouplist));
+      // let mergedArray = res.map((item) => Object.assign({}, item, this.languagelist[item.language_id],this.bloodgrouplist[item.blood_group_id]));
+      // console.log(mergedArray);
+      this.drivers = mergeById(res, this.languagelist,this.bloodgrouplist);
       this.dtTrigger.next();
     }    
       )
@@ -66,11 +74,3 @@ export class DriverListComponent implements OnInit,OnDestroy {
   }
 
 }
-// const mergeById = (a1, a2 , a3) =>
-//     a1.map(itm => ({
-//         ...a2.find((item) => (item.language_id === itm.language_id) && item),
-//         ...a3.find((item1) => (item1.blood_group_id === itm.blood_group_id) && item1),
-//         ...itm
-//     }));
-
-// console.log(mergeById(res, this.languagelist,this.bloodgrouplist));
