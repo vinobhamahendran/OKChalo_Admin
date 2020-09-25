@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { DriversService } from '@app/content/service/drivers.service';
 import { MastersService } from '@app/content/service/masters.service';
-import { DriverModel } from '@app/data-db/model/driverModel';
-import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -16,7 +14,7 @@ export class DriverCreateComponent implements OnInit {
   driverform : FormGroup;
   languagelist: any;
   bloodGrouplist:any;
-  constructor(private service:DriversService,public formBuilder:FormBuilder,private toastr: ToastrService,private languageservice:MastersService) { }
+  constructor(private service:DriversService,public formBuilder:FormBuilder,private languageservice:MastersService) { }
 
   ngOnInit(): void {
     this.driverform = this.formBuilder.group({
