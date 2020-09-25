@@ -1,4 +1,5 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
+import { DriversService } from '@app/content/service/drivers.service';
 import { DriverModel } from '@app/data-db/model/driverModel';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -15,10 +16,21 @@ export class ViewDriverComponent implements OnInit {
     position: 'Administrator'
   };
   datas:any;
-  constructor(public modal:NgbActiveModal) { }
+  _vehicleinfo:any;
+  constructor(public modal:NgbActiveModal,private service:DriversService) { }
 
   ngOnInit(): void {
-    console.log(this.datas)
+    console.log(this.datas);
+    this.vehicleinfo();
+  }
+  vehicleinfo(){
+    this.service.getVehicleByDriverId(this.datas.driver_id).subscribe(res =>{
+      if(res){
+        this._vehicleinfo =res;
+      }
+     
+      console.log(res);
+    })
   }
 
 }

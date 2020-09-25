@@ -1,0 +1,49 @@
+<card-header class="bg-primary text-white">
+    <card-heading>
+        <h1 style="color: #ffffff;">Vehicle Details</h1>
+    </card-heading>
+    <card-tool><div ngbDropdown placement="bottom-right">
+        <button type="button" class="close" data-dismiss="modal"
+            (click)="modal.dismiss('Cross click')">×</button>
+    </div></card-tool>
+</card-header>
+<card-body *ngIf="datas">
+    <ul class="dt-list dt-list-col-4">
+        <li class="dt-list__item">
+            <div class="media-body">
+                <span class="d-block text-light-gray f-15 mb-1">Vehicle Id</span>
+                <p class="h5 mb-4">{{datas.vehicle_id}}</p>
+            </div>
+        </li> 
+        <li class="dt-list__item">
+            <div class="media-body">
+                <span class="d-block text-light-gray f-15 mb-1">Driver Name</span>
+                <p class="h5 mb-4">{{datas.first_name + ' ' + datas.lastname}}</p>
+            </div>
+        </li> 
+        <li class="dt-list__item">
+            <div class="media-body">
+                <span class="d-block text-light-gray f-15 mb-1">Vehicle Registration Number</span>
+                <p class="h5 mb-4">{{datas.vehicle_registration_number}}</p>
+            </div>
+        </li>
+        <li class="dt-list__item">
+            <div class="media-body">
+                <span class="d-block text-light-gray f-15 mb-1">Vehicle Type</span>
+                <p class="h5 mb-4">{{datas.vehicle_type}}</p>
+            </div>
+        </li> 
+        <li class="dt-list__item">
+            <div class="media-body">
+                <span class="d-block text-light-gray f-15 mb-1">Capacity</span>
+                <p class="h5 mb-4">{{datas.capacity}}</p>
+            </div>
+        </li>
+        <li class="dt-list__item">
+            <div class="media-body">
+                <span class="d-block text-light-gray f-15 mb-1">Active</span>
+                <p class="h5 mb-4">{{datas.active}}</p>
+            </div>
+        </li>  
+    </ul>
+</card-body>

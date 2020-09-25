@@ -69,6 +69,12 @@ export class MastersService {
     )
   }
 
+  getVehicleType():Observable<any>{
+    return this.http.get(`${this.URL}vtype/list`).pipe(
+      catchError(this.errorHandler)
+    )
+  }
+
   errorHandler(error) {
     let errorMessage = '';
     if(error.error instanceof ErrorEvent) {

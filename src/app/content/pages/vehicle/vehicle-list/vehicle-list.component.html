@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-xl-6">
+      <app-page-header pageTitle="Vehicle"></app-page-header>
+    </div>
+    <div class="col-xl-6">
+      <gx-breadcrumbs displayAs="nav" class="mb-0" [data]="breadcrumb"></gx-breadcrumbs>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="dt-card">
+        <div class="dt-card__body">
+          <div class="table-responsive">
+            <table class="dataTable table-striped" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+              <thead>
+                <tr>
+                  <th class="text-uppercase idhide" scope="col">Vehicle Id</th>
+                  <th class="text-uppercase" scope="col">Vehicle Type</th>
+                  <th class="text-uppercase" scope="col">Driver Name</th>
+                  <th class="text-uppercase" scope="col">Vehicle Registration Number</th>
+                  <th class="text-uppercase" scope="col">Capacity</th>
+                  <!-- <th class="text-uppercase" scope="col">Action</th> -->
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor='let data of _vehiclelist'>
+                  <td class="idhide">{{data.vehicle_id}}</td>
+                  <td>{{data.vehicle_type}}</td>
+                  <td>{{data.first_name + ' ' + data.last_name}}</td>                 
+                  <td>{{data.vehicle_registration_number}}</td>
+                  <td>{{data.capacity}}</td>
+                  <!-- <td><button class="btn btn-primary btn-xs" (click)="openModal(data)"><i class="fa fa-eye" aria-hidden="true" ></i></button></td> -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

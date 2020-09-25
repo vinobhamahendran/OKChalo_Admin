@@ -30,6 +30,9 @@ import { MakeListComponent } from './master-settings/make-list/make-list.compone
 import { MakeCreateComponent } from './master-settings/make-list/make-create/make-create.component';
 import { ViewDriverComponent } from './driver/view-driver/view-driver.component';
 import { ViewPassengersComponent } from './passengers/view-passengers/view-passengers.component';
+import { VehicleComponent } from './master-settings/vehicle/vehicle.component';
+import { VehicleListComponent } from './vehicle/vehicle-list/vehicle-list.component';
+import { VehicleViewComponent } from './vehicle/vehicle-view/vehicle-view.component';
 
 
 const appsRoutes: Routes = [
@@ -105,6 +108,14 @@ const appsRoutes: Routes = [
     path:'make-list',
     component:MakeListComponent
   },
+  {
+    path:'vehicletype',
+    component:VehicleComponent
+  },
+  {
+    path:'vehicle-list',
+    component:VehicleListComponent
+  }
   
 ];
 
@@ -142,6 +153,9 @@ const appsRoutes: Routes = [
     MakeCreateComponent,
     ViewDriverComponent,
     ViewPassengersComponent,
+    VehicleComponent,
+    VehicleListComponent,
+    VehicleViewComponent
     
   ]
 })

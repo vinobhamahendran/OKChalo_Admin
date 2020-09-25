@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="datatable" id="dataTables-example" datatable [dtOptions]="dtOptions" [dtTrigger]='dtTrigger'>
+                    <table class="datatable table-striped" id="dataTables-example" datatable [dtOptions]="dtOptions" [dtTrigger]='dtTrigger'>
                         <thead>
                             <tr>
                                 <th class="text-uppercase idhide" scope="col">Ride id</th>
@@ -46,10 +46,10 @@
                                 <td>{{data.pickup_address}}</td>
                                 <td>{{data.drop_address}}</td>
                                 <td [ngClass]="data.status.status">{{data.status.status}}</td>
-                                <td style="cursor: pointer;"><button type="button" class="btn btn-primary"
+                                <td style="cursor: pointer;"><button type="button" class="btn btn-primary btn-xs"
                                 (click)="viewRides(data.ride_id)" 
                                 [ngStyle]="{'display':(data.status.status === 'Requested') ? 'none' :
-                                (data.status.status === 'Confirmed') ? 'block':''}">View</button></td>
+                                (data.status.status === 'Confirmed') ? 'block':''}"><i class="fa fa-eye" aria-hidden="true" ></i></button></td>
                             </tr>
                         </tbody>
                     </table>

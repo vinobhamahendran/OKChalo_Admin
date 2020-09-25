@@ -11,7 +11,7 @@
     <div class="dt-card">
       <div class="dt-card__body">
         <div class="table-responsive">
-          <table class="dataTable" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+          <table class="dataTable table-striped" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
             <thead>
               <tr>
                 <th class="text-uppercase idhide" scope="col">ID</th>
@@ -35,8 +35,8 @@
                 <td>{{data.bloodgroup.blood_group}}</td>
                 <td>{{data.language.language}}</td>
                 <!-- <td>{{data.activation_status}}</td> -->
-                <td style="cursor: pointer;"><button type="button" class="btn btn-primary"
-                    (click)="viewItem(data)">View</button></td>
+                <td style="cursor: pointer;"><button type="button" class="btn btn-primary btn-xs"
+                    (click)="viewItem(data)"><i class="fa fa-eye" aria-hidden="true" ></i></button></td>
               </tr>
             </tbody>
           </table>
