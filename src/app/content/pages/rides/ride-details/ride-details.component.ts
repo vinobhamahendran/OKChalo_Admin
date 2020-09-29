@@ -5,7 +5,7 @@ import { MastersService } from '@app/content/service/masters.service';
 import { PassengersService } from '@app/content/service/passengers.service';
 import { RideService } from '@app/content/service/ride.service';
 import { Subject } from 'rxjs';
-declare var $ : any;
+declare var $: any;
 @Component({
   selector: 'app-ride-details',
   templateUrl: './ride-details.component.html',
@@ -18,11 +18,11 @@ export class RideDetailsComponent implements OnInit, OnDestroy {
   rideDetails: any;
   _passengerlist: any;
   _driverlist: any;
-  _statuslist:any;
+  _statuslist: any;
 
 
   constructor(private route: Router, private service: RideService,
-     private passengerservice: PassengersService,private masterservice:MastersService,
+    private passengerservice: PassengersService, private masterservice: MastersService,
     private driverservice: DriversService) { }
 
   ngOnInit(): void {
@@ -38,13 +38,13 @@ export class RideDetailsComponent implements OnInit, OnDestroy {
       ordering: true,
       order: [0, 'desc'] //asc,desc
     }
-    $('.statusfilter').on( 'change', function () {
- 
+    $('.statusfilter').on('change', function () {
+
       var v = $(this).val();  // getting search input value
-      
+
       $('#dataTables-example').DataTable().columns(7).search(v).draw();
-  } );
-  
+    });
+
     this.allRides();
   }
   ngOnDestroy(): void {
@@ -60,7 +60,7 @@ export class RideDetailsComponent implements OnInit, OnDestroy {
       this._driverlist = res;
     })
   }
-  statuslist(){
+  statuslist() {
     this.masterservice.getStatusList().subscribe(res => {
       this._statuslist = res;
     })
@@ -68,14 +68,17 @@ export class RideDetailsComponent implements OnInit, OnDestroy {
 
   allRides() {
     this.service.getAllRides().subscribe(response => {
-      const mergeById = (a1, a2, a3,a4) =>
+      this.passengerlist();
+      this.driverlist();
+      this.statuslist();
+      const mergeById = (a1, a2, a3, a4) =>
         a1.map(itm => ({
           customer: { ...a2.find((item) => (item.customer_id === itm.customer_id) && item) },
           driver: { ...a3.find((item1) => (item1.driver_id === itm.driver_id) && item1) },
-          status:{...a4.find((item2) => (item2.status_id === itm.status_id)&& item2)},
+          status: { ...a4.find((item2) => (item2.status_id === itm.status_id) && item2) },
           ...itm
         }));
-      this.rideDetails = mergeById(response, this._passengerlist, this._driverlist,this._statuslist);
+      this.rideDetails = mergeById(response, this._passengerlist, this._driverlist, this._statuslist);
       console.log(this.rideDetails);
       this.dtTrigger.next();
     })

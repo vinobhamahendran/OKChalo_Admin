@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { DriversService } from '@app/content/service/drivers.service';
 import { MastersService } from '@app/content/service/masters.service';
 import Swal from 'sweetalert2';
@@ -10,50 +11,96 @@ import Swal from 'sweetalert2';
   styleUrls: ['./driver-create.component.scss']
 })
 export class DriverCreateComponent implements OnInit {
-  breadcrumb = [{label:'Home',route:'/dashboard'},{label:'Driver - Add Driver',active:true}];
-  driverform : FormGroup;
+  breadcrumb = [{ label: 'Home', route: '/dashboard' }, { label: 'Driver - Add Driver', active: true }];
+  driverform: FormGroup;
+  vehicleform: FormGroup;
   languagelist: any;
-  bloodGrouplist:any;
-  constructor(private service:DriversService,public formBuilder:FormBuilder,private languageservice:MastersService) { }
+  bloodGrouplist: any;
+  vehicletype: any;
+  submitted = false;
+
+  constructor(private service: DriversService, public formBuilder: FormBuilder,
+    private languageservice: MastersService, private router: Router) {
+    this.vehicleform = this.formBuilder.group({
+      vehicles: this.formBuilder.array([]),
+    });
+    this.driverform = this.formBuilder.group({
+      first_name: ['', Validators.required],
+      last_name: [''],
+      mobile_number: ['', Validators.required],
+      gender: ['', Validators.required],
+      blood_group_id: ['', Validators.required],
+      country_id: [],
+      city: ['', Validators.required],
+      language_id: ['', Validators.required]
+    });
+  }
 
   ngOnInit(): void {
-    this.driverform = this.formBuilder.group({
-      first_name:['',Validators.required],
-      last_name:[''],
-      mobile_number:['',Validators.required],
-      gender:[''],
-      blood_group_id:[],
-      country_id:[],
-      city:[''],
-      language_id:[]
-    })
     this.getlanguagelist();
     this.getBloodGrouplist();
+    this.getvehicletype();
   }
-  opensuccessalert()
-  {
-    Swal.fire('Success', 'Driver Added Successfully!', 'success');
+  vehicles(): FormArray {
+    return this.vehicleform.get("vehicles") as FormArray
   }
-  addDriver(){
-    console.log(this.driverform.value);
-    this.service.addDriver(this.driverform.value).subscribe(resp => {
-      console.log(resp);
-      this.opensuccessalert();
-      
+  newVehicleinfo(): FormGroup {
+    return this.formBuilder.group({
+      vehicle_registration_number: ['',Validators.required],
+      vehicle_type_id: ['',Validators.required],
+      capacity: ['',Validators.required],
+      active: false,
+      driver_id: []
     })
-    this.driverform.reset();
   }
 
-  getlanguagelist(){
-    this.languageservice.getLanguageList().subscribe(res =>{
-      this.languagelist = res ;
-      console.log(this.languagelist);
-      
+  addVehicle() {
+    this.vehicles().push(this.newVehicleinfo());
+  }
+  removeVehicle(vehicleIndex: any) {
+    this.vehicles().removeAt(vehicleIndex)
+  }
+  get f() { return this.driverform.controls; }
+  get vehicle() { return this.vehicleform.get("vehicles") as FormArray }
+  opensuccessalert() {
+    Swal.fire('Success', 'Driver Added Successfully!', 'success');
+  }
+  addDriver() {
+    this.submitted = true;
+    if (this.driverform.invalid || this.vehicle.invalid) {
+      return;
+    }
+    console.log(this.vehicleform.value, this.driverform.value)
+    // this.service.addDriver(this.driverform.value).subscribe(resp => {
+    //   this.vehicle.value.forEach(element => {
+    //     element.driver_id = resp.id;
+    //     this.service.addVehicle(element).subscribe(res => {
+    //     });
+
+    //   });
+
+    // });
+    
+    this.opensuccessalert();
+    this.driverform.reset();
+    this.vehicleform.reset();
+    this.submitted = false;
+  }
+
+  getlanguagelist() {
+    this.languageservice.getLanguageList().subscribe(res => {
+      this.languagelist = res;
     })
   }
-  getBloodGrouplist(){
-    this.languageservice.getBloodGroupList().subscribe(res =>{
-      this.bloodGrouplist =res;
+  getBloodGrouplist() {
+    this.languageservice.getBloodGroupList().subscribe(res => {
+      this.bloodGrouplist = res;
+    })
+  }
+  getvehicletype() {
+    this.languageservice.getVehicleType().subscribe(res => {
+      this.vehicletype = res;
+      console.log(res);
     })
   }
 

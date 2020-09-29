@@ -7,113 +7,160 @@
   </div>
 </div>
 <div class="row">
-<div class="col-12">
+  <div class="col-12">
 
-<gx-card card-title="Add Driver">
+    <gx-card card-title="Add Driver">
 
-  <form [formGroup]='driverform' (ngSubmit)="addDriver()">
+      <form [formGroup]='driverform'>
 
-    <div class="form-row mb-4">
-      <div class="col-sm-6 mb-3">
-        <label for="firstname">First name</label>
-        <input type="text" class="form-control" id="firstname" 
-        placeholder="First name" formControlName= "first_name" name="first_name" required>
-      </div>
-      <div class="col-sm-6 mb-3">
-        <label for="lastname">Last name</label>
-        <input type="text" class="form-control" id="lastname" placeholder="Last name" formControlName = "last_name" name="last_name">
-      </div>
-    </div>
-
-    <div class="form-row mb-4">
-      <div class="col-sm-6 mb-3">
-        <label for="mobile">Mobile Number</label>
-        <input type="text" class="form-control" id="mobile" 
-        placeholder="Mobile Number" formControlName = "mobile_number" name="mobile_number" required>
-      </div>
-      <div class="col-sm-6 mb-3">
-        <label for="city">City</label>
-        <input type="text" class="form-control" id="city" placeholder="Enter City" formControlName = "city" name="city">
-      </div>
-    </div>
-    <div class="form-row mb-4">
-      <div class="col-sm-6 mb-3">
-        <label for="language">Language</label>
-        <select class="form-control" id="language" formControlName="language_id">
-          <option [ngValue]='null' disabled selected>Select Language</option>
-          <option *ngFor="let langdata of languagelist" 
-           [ngValue]="langdata.language_id">{{langdata.language}}</option>
-        </select>
-      </div>
-      <div class="col-sm-6 mb-3">
-        <label for="bloodgroup">Blood Group</label>
-        <select class="form-control" id="bloodgroup" formControlName="blood_group_id">
-          <option [ngValue]='null' disabled selected>Select Blood Group</option>
-          <option *ngFor="let bloodgroupdata of bloodGrouplist" 
-           [ngValue]="bloodgroupdata.blood_group_id">{{bloodgroupdata.blood_group}}</option>
-        </select>
-      </div>
-    </div>
-    <div class="form-row mb-4">
-      <label class="col-md-2 col-sm-3  mb-4 mb-sm-0">Gender</label>
-
-      <div class="col-md-10 col-sm-9">
-
-        <div class="custom-control custom-radio custom-control-inline">
-          <input type="radio" id="customRadioInline1" name="gender" class="custom-control-input" value="M"
-          formControlName="gender">
-          <label class="custom-control-label" for="customRadioInline1">Male</label>
+        <div class="form-row mb-4">
+          <div class="col-sm-6 mb-3 form-group required">
+            <label class="control-label" for="firstname">First name</label>
+            <input type="text" class="form-control" id="firstname" placeholder="First name" formControlName="first_name"
+              [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }">
+            <div *ngIf="f.first_name.errors" class="invalid-feedback">
+              <div *ngIf="submitted && f.first_name.errors.required">First Name is required</div>
+            </div>
+          </div>
+          <div class="col-sm-6 mb-3 form-group">
+            <label class="control-label" for="lastname">Last name</label>
+            <input type="text" class="form-control" id="lastname" placeholder="Last name" formControlName="last_name">
+          </div>
         </div>
 
-        <div class="custom-control custom-radio custom-control-inline">
-          <input type="radio" id="customRadioInline2" name="gender" value="F"
-                 class="custom-control-input" formControlName="gender">
-          <label class="custom-control-label" for="customRadioInline2">Female</label>
+        <div class="form-row mb-4">
+          <div class="col-sm-6 mb-3 form-group required">
+            <label class="control-label" for="mobile">Mobile Number</label>
+            <input type="text" class="form-control" id="mobile" placeholder="Mobile Number"
+              formControlName="mobile_number" name="mobile_number"
+              [ngClass]="{'is-invalid':submitted && f.mobile_number.errors}">
+            <div *ngIf="f.mobile_number.errors" class="invalid-feedback">
+              <div *ngIf="submitted && f.mobile_number.errors.required">Mobile number is required</div>
+            </div>
+          </div>
+          <div class="col-sm-6 mb-3 form-group required">
+            <label class="control-label" for="city">City</label>
+            <input type="text" class="form-control" id="city" placeholder="Enter City" formControlName="city"
+              [ngClass]="{'is-invalid':submitted && f.city.errors}">
+            <div *ngIf="f.city.errors" class="invalid-feedback">
+              <div *ngIf="submitted && f.city.errors.required">City is required</div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+        <div class="form-row mb-4">
+          <div class="col-sm-6 mb-3 form-group required">
+            <label class="control-label" for="language">Language</label>
+            <select class="form-control" id="language" formControlName="language_id" required
+              [ngClass]="{'is-invalid':submitted && f.language_id.errors}">
+              <option [ngValue]='' disabled selected>Select Language</option>
+              <option *ngFor="let langdata of languagelist" [ngValue]="langdata.language_id">{{langdata.language}}
+              </option>
+            </select>
+            <div *ngIf="f.language_id.errors" class="invalid-feedback">
+              <div *ngIf="submitted && f.language_id.errors.required">Language is required</div>
+            </div>
+          </div>
+          <div class="col-sm-6 mb-3 form-group required">
+            <label class="control-label" for="bloodgroup">Blood Group</label>
+            <select class="form-control" id="bloodgroup" formControlName="blood_group_id" required
+              [ngClass]="{'is-invalid':submitted && f.blood_group_id.errors}">
+              <option [ngValue]='' disabled selected>Select Blood Group</option>
+              <option *ngFor="let bloodgroupdata of bloodGrouplist" [ngValue]="bloodgroupdata.blood_group_id">
+                {{bloodgroupdata.blood_group}}</option>
+            </select>
+            <div *ngIf="f.blood_group_id.errors" class="invalid-feedback">
+              <div *ngIf="submitted && f.blood_group_id.errors.required">Blood Group is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row mb-4 form-group required">
 
-    <!-- <hr class="border-dashed my-8"> -->
-    <!-- <div class="dt-card__heading mb-4">
-      <h3 class="dt-card__title">Vehicle Information</h3>
-    </div>
+          <label class="col-md-2 col-sm-3  mb-4 mb-sm-0 control-label">Gender</label>
 
-    <div class="form-row mb-4">
-      <div class="col-sm-6 mb-3">
-        <label for="vehicleno">Vehicle Number</label>
-        <input type="text" class="form-control" id="vehicleno" placeholder="Vehicle Number" ngModel  name="vehicleNumber" required>
-      </div>
-      <div class="col-sm-6 mb-3">
-        <label for="vehicletype">Vehicle Type</label>
-        <input type="text" class="form-control" id="vehicletype" placeholder="Vehicle Type" ngModel  name="vehicleType" required>
-      </div>
-    </div>
+          <div class="col-md-10 col-sm-9">
 
-    <div class="form-row mb-4">
-      <div class="col-sm-6 mb-3">
-        <label for="vehiclemodel">Vehicle Model</label>
-        <input type="text" class="form-control" id="vehiclemodel" placeholder="Vehicle Model" ngModel  name="vehicleModel" required>
-      </div>
-      <div class="col-sm-6 mb-3">
-        <label for="taxrenewal">Tax Renewal Date</label>
-        <input type="text" class="form-control" id="taxrenewal" placeholder="Tax Renewal Date" ngModel name="taxRenewalDate" required>
-      </div>
-    </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="customRadioInline1" name="gender" class="custom-control-input" value="M"
+                formControlName="gender" [ngClass]="{'is-invalid':submitted && f.gender.errors}">
+              <label class="custom-control-label" for="customRadioInline1">Male</label>
+            </div>
 
-    <div class="form-row mb-4">
-      <div class="col-sm-6 mb-3">
-        <label for="insurancerenewal">Insurance Renewal Date</label>
-        <input type="text" class="form-control" id="insurancerenewal" placeholder="Insurance Renewal Date" ngModel name="insuranceRenewalDate" required>
-      </div>
-    </div>-->
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="customRadioInline2" name="gender" value="F" class="custom-control-input"
+                formControlName="gender" [ngClass]="{'is-invalid':submitted && f.gender.errors}">
+              <label class="custom-control-label" for="customRadioInline2">Female</label>
+              <div *ngIf="f.gender.errors" class="invalid-feedback">
+                <div *ngIf="submitted && f.gender.errors.required" style="margin-left: 30px; margin-top: -5px;">Gender
+                  is required</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <form [formGroup]='vehicleform'>
+        <div formArrayName="vehicles">
+          <div *ngFor="let vehicles of vehicles().controls; let vehicleIndex=index">
+            <hr class="border-dashed my-8">
+            <div class="dt-card__heading mb-6">
+              <h3 class="dt-card__title">Vehicle Information : {{vehicleIndex+1}}</h3>
+            </div>
+            <div [formGroupName]="vehicleIndex">
+              <div class="form-row mb-4">
+                <div class="col-sm-6 mb-3 form-group">
+                  <label class="control-label" for="vehicleno">Vehicle Registration Number</label>
+                  <input type="text" class="form-control" id="vehicleno" placeholder="Vehicle Number"
+                    formControlName="vehicle_registration_number"
+                    [ngClass]="{'is-invalid':submitted && vehicle.controls[vehicleIndex].get('vehicle_registration_number').errors}">
+                    <div *ngIf="vehicle.controls[vehicleIndex].get('vehicle_registration_number').errors" class="invalid-feedback">
+                      <div *ngIf="submitted && vehicle.controls[vehicleIndex].get('vehicle_registration_number').errors.required" style="margin-left: 30px; margin-top: -5px;">
+                      Vehicle Registration Number is required</div>
+                    </div>
+                  </div>
+                <div class="col-sm-6 mb-3 form-group">
+                  <label class="control-label" for="vehicletype">Vehicle Type</label>
+                  <select class="form-control" id="vehicletype" formControlName="vehicle_type_id" [ngClass]="{'is-invalid':submitted && vehicle.controls[vehicleIndex].get('vehicle_type_id').errors}">
+                    <option [ngValue]='null' disabled selected>Select Vehicle Type</option>
+                    <option *ngFor="let vehicletypedata of vehicletype" [ngValue]="vehicletypedata.vehicle_type_id">
+                      {{vehicletypedata.vehicle_type}}</option>
+                  </select>
+                  <div *ngIf="vehicle.controls[vehicleIndex].get('vehicle_type_id').errors" class="invalid-feedback">
+                    <div *ngIf="submitted && vehicle.controls[vehicleIndex].get('vehicle_type_id').errors.required">Vehicle
+                      is required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row mb-4">
+                <div class="col-sm-6 mb-3 form-group">
+                  <label class="control-label" for="capacity">Capacity</label>
+                  <input type="text" class="form-control" id="capacity" placeholder="Vehicle Model"
+                    formControlName="capacity" [ngClass]="{'is-invalid':submitted && vehicle.controls[vehicleIndex].get('capacity').errors}">
+                    <div *ngIf="vehicle.controls[vehicleIndex].get('capacity').errors" class="invalid-feedback">
+                      <div *ngIf="submitted && vehicle.controls[vehicleIndex].get('capacity').errors.required">Capacity
+                        is required</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 my-6 form-group">
+                  <button (click)="removeVehicle(vehicleIndex)"
+                    class="btn btn-danger btn-sm text-uppercase">Remove</button>
+                </div>
+              </div>
 
-    <div class="form-group mb-0">
-      <button type="submit" class="btn btn-primary text-uppercase">Create</button>
-    </div> 
+            </div>
+          </div>
+       
+        <hr class="border-dashed my-8">
+        <div class="form-group text-right">
+          <button (click)="addVehicle()" class="btn btn-success btn-sm text-uppercase">Add Vehicle</button>
+        </div>
 
-  </form>
+        <div class="form-group mb-0">
+          <button type="submit" class="btn btn-primary text-uppercase" (click)="addDriver()">Submit</button>
+        </div>
 
-</gx-card>
+      </form>
 
-</div>
+    </gx-card>
+
+  </div>
 </div>

@@ -11,47 +11,47 @@ import { MastersService } from '@app/content/service/masters.service';
   templateUrl: './driver-list.component.html',
   styleUrls: ['./driver-list.component.scss']
 })
-export class DriverListComponent implements OnInit,OnDestroy {
-  breadcrumb = [{label:'Home',route:'/dashboard'},{label: 'Driver - All Driver',active:true}];
-  drivers :any;
-  address:any;
-  languagelist:any=[];
-  formattedlang=[];
+export class DriverListComponent implements OnInit, OnDestroy {
+  breadcrumb = [{ label: 'Home', route: '/dashboard' }, { label: 'Driver - All Driver', active: true }];
+  drivers: any;
+  address: any;
+  languagelist: any = [];
+  formattedlang = [];
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
-  bloodgrouplist:any=[];
-  constructor(private service : DriversService,private masterservice:MastersService,private router :Router,private modelService:NgbModal) {}
+  bloodgrouplist: any = [];
+  finaldata: any;
+  constructor(private service: DriversService, private masterservice: MastersService, private router: Router, private modelService: NgbModal) { }
 
-  getAllDrivers(){
+  getAllDrivers() {
     this.service.getAllDriver().subscribe(res => {
-      console.log(res);
-      const mergeById = (a1, a2 , a3) =>
-    a1.map(driver => ({
-        language:{...a2.find((item) => (item.language_id === driver.language_id) && item)},
-        bloodgroup: {...a3.find((item1) => (item1.blood_group_id === driver.blood_group_id) && item1)},
-        ...driver
-    }));
+      this.getlanguageList();
+      this.getBloodgroup();
+      const mergeById = (a1, a2, a3) =>
+        a1.map(driver => ({
+          language: { ...a2.find((item) => (item.language_id === driver.language_id) && item) },
+          bloodgroup: { ...a3.find((item1) => (item1.blood_group_id === driver.blood_group_id) && item1) },
+          ...driver
+        }));
 
-  console.log(mergeById(res, this.languagelist,this.bloodgrouplist));
-      // let mergedArray = res.map((item) => Object.assign({}, item, this.languagelist[item.language_id],this.bloodgrouplist[item.blood_group_id]));
-      // console.log(mergedArray);
-      this.drivers = mergeById(res, this.languagelist,this.bloodgrouplist);
+      console.log(mergeById(res, this.languagelist, this.bloodgrouplist));
+      this.drivers = mergeById(res, this.languagelist, this.bloodgrouplist);
       this.dtTrigger.next();
-    }    
-      )
+    }
+    )
   }
-  viewItem(datas : any){
-    const ref = this.modelService.open(ViewDriverComponent,{size:'lg',centered:true,backdrop:true});
-    ref.componentInstance.datas=datas;
+  viewItem(datas: any) {
+    const ref = this.modelService.open(ViewDriverComponent, { size: 'lg', centered: true, backdrop: true });
+    ref.componentInstance.datas = datas;
   }
-  getlanguageList(){
-    this.masterservice.getLanguageList().subscribe(res=>{
-      this.languagelist=res;
+  getlanguageList() {
+    this.masterservice.getLanguageList().subscribe(res => {
+      this.languagelist = res;
     })
   }
 
-  getBloodgroup(){
-    this.masterservice.getBloodGroupList().subscribe(res =>{
+  getBloodgroup() {
+    this.masterservice.getBloodGroupList().subscribe(res => {
       this.bloodgrouplist = res;
     })
   }
@@ -59,13 +59,13 @@ export class DriverListComponent implements OnInit,OnDestroy {
     this.getlanguageList();
     this.getBloodgroup();
     this.dtOptions = {
-      pagingType : 'simple_numbers',
-      pageLength : 5,
-      lengthMenu : [5, 15, 25],
-      processing : true,
-      dom : '<"wrapper"fltip>',
-      ordering:true,
-      order:[0,'desc'] //asc,desc
+      pagingType: 'simple_numbers',
+      pageLength: 5,
+      lengthMenu: [5, 15, 25],
+      processing: true,
+      dom: '<"wrapper"fltip>',
+      ordering: true,
+      order: [0, 'desc'] //asc,desc
     };
     this.getAllDrivers();
   }
