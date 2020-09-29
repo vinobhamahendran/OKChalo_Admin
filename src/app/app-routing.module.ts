@@ -14,7 +14,8 @@ const appRoutes: Routes = [
   },
   {
     path: '',
-    loadChildren: () => import('./layouts/default-layout/default-layout.module').then(m => m.DefaultLayoutModule)
+    loadChildren: () => import('./layouts/default-layout/default-layout.module').then(m => m.DefaultLayoutModule),
+    canActivate: [AuthGuard]
   },
   {
     path: '**',

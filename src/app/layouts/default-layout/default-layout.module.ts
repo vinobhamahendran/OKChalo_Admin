@@ -13,9 +13,7 @@ import {DefaultLayoutComponent} from './default-layout.component';
 import {HeaderComponent} from './partials/header/header.component';
 import {FooterComponent} from './partials/footer/footer.component';
 import {NavbarVerticalComponent} from './partials/navbar/navbar-vertical/navbar-vertical.component';
-import {NotificationsComponent} from './partials/header/notifications/notifications.component';
-import {MessagesComponent} from './partials/header/messages/messages.component';
-import {AppsComponent} from './partials/header/apps/apps.component';
+
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -38,10 +36,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     DefaultLayoutComponent,
     HeaderComponent,
     FooterComponent,
-    NavbarVerticalComponent,
-    NotificationsComponent,
-    MessagesComponent,
-    AppsComponent
+    NavbarVerticalComponent
   ],
   providers: [
     {

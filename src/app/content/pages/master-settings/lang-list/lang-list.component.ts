@@ -25,6 +25,9 @@ export class LangListComponent implements OnInit {
     this.service.getLanguageList().subscribe(res =>{
       console.log(res);
       this.langList= res;
+    },
+    (error)=>{
+      console.log(error);
     })
   }
   addLanguageModal(){

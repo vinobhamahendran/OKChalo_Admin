@@ -50,7 +50,7 @@
                   <span class="f-12">{{currentUser.position}}</span>
                 </span>
             </div>
-            <a class="dropdown-item" href="#logout" >
+            <a class="dropdown-item" href="#logout" (click)="onLogout($event)">
               <gx-icon name="editors" [fw]="true" class="mr-2 mr-sm-1"></gx-icon>
               Logout
             </a>

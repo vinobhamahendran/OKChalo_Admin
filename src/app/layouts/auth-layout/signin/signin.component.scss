@@ -4,9 +4,13 @@
     border-radius: 1em;
     width: 100%;
 }
-// .dt-login__content-inner{
-//     padding: 4rem 2.2rem 2.2rem;
-// }
+.is-invalid{
+    background-image: none;
+}
+.form-group.required .control-label:after {
+    content:"*";
+    color:red;
+}
 .form-group label{
     color: #fff;
 }

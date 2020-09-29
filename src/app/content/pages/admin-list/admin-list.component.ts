@@ -34,6 +34,9 @@ export class AdminListComponent implements OnInit,OnDestroy {
       console.log(res);
       this.adminList = res;
       this.dtTrigger.next();
+    },
+    (error)=>{
+      console.log(error);
     })
   }
   viewItem(data:any){

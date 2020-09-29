@@ -25,6 +25,9 @@ export class MakeListComponent implements OnInit {
     this.service.getMakeList().subscribe(res => {
       console.log(res);
       this.makeListdata = res;
+    },
+    (error)=>{
+      console.log(error);
     })
   }
 

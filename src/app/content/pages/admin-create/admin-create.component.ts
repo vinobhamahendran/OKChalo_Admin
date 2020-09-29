@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class AdminCreateComponent implements OnInit {
   breadcrumb = [{ label: 'Home', route: '/dashboard' }, { label: 'Admin-Create-new', active: true }];
-  constructor(private service: AdminService, private formBuilder: FormBuilder,private route:Router) { }
+  constructor(private service: AdminService, private formBuilder: FormBuilder, private route: Router) { }
   createAdminForm: FormGroup;
   submitted = false;
   fieldTextType: boolean;
@@ -21,8 +21,8 @@ export class AdminCreateComponent implements OnInit {
     this.createAdminForm = this.formBuilder.group({
       first_name: ['', Validators.required],
       last_name: [''],
-      email: ['',[Validators.required,Validators.email]],
-      mobile_number: ['', [Validators.required,Validators.minLength(10),Validators.maxLength(10)]],
+      email: ['', [Validators.required, Validators.email]],
+      mobile_number: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       role_id: [1],
       active: [0],
       username: ['', Validators.required],
@@ -32,20 +32,20 @@ export class AdminCreateComponent implements OnInit {
       {
         validators: this.MustMatch('password', 'confirmPassword')
       })
-      
+
   }
   get f() { return this.createAdminForm.controls; }
   onSubmit() {
     this.submitted = true;
-
-    if (this.createAdminForm.invalid ) {
+    if (this.createAdminForm.invalid) {
       return;
     }
-
-   
-    // this.service.createAdmin(this.createAdminForm.value).subscribe(res => {
-    //   console.log(res);    
-    // });
+    this.service.createAdmin(this.createAdminForm.value).subscribe(res => {
+      console.log(res);
+    },
+      (error) => {
+        console.log(error);
+      });
     this.opensuccessalert();
     this.createAdminForm.reset();
     this.submitted = false;
@@ -74,8 +74,7 @@ export class AdminCreateComponent implements OnInit {
   toggleRepeatFieldTextType() {
     this.repeatFieldTextType = !this.repeatFieldTextType;
   }
-  opensuccessalert()
-  {
+  opensuccessalert() {
     Swal.fire('Success', 'Admin Added Successfully!', 'success');
   }
 

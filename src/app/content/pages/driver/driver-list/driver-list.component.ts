@@ -37,6 +37,9 @@ export class DriverListComponent implements OnInit, OnDestroy {
       console.log(mergeById(res, this.languagelist, this.bloodgrouplist));
       this.drivers = mergeById(res, this.languagelist, this.bloodgrouplist);
       this.dtTrigger.next();
+    },
+    (error)=>{
+      console.log(error);
     }
     )
   }
@@ -47,12 +50,18 @@ export class DriverListComponent implements OnInit, OnDestroy {
   getlanguageList() {
     this.masterservice.getLanguageList().subscribe(res => {
       this.languagelist = res;
+    },
+    (error)=>{
+      console.log(error);
     })
   }
 
   getBloodgroup() {
     this.masterservice.getBloodGroupList().subscribe(res => {
       this.bloodgrouplist = res;
+    },
+    (error)=>{
+      console.log(error);
     })
   }
   ngOnInit(): void {

@@ -19,35 +19,29 @@ export class MastersService {
   }
 
   getLanguageList():Observable<any>{
-    return this.http.get(`${this.URL}languages/list`).pipe(
-      catchError(this.errorHandler)
-    )
+    return this.http.get(`${this.URL}languages/list`);
   }
 
   getBloodGroupList():Observable<any>{
-    return this.http.get(`${this.URL}bloodgroups/list`).pipe(
-      catchError(this.errorHandler)
-    )
+    return this.http.get(`${this.URL}bloodgroups/list`);
+    
   }
 
   getStatusList():Observable<any>{
-    return this.http.get(`${this.URL}ride/status`).pipe(
-      catchError(this.errorHandler)
-    )
+    return this.http.get(`${this.URL}ride/status`);
+    
   }
 
   getMakeList():Observable<any>{
-    return this.http.get(`${this.URL}make/list`).pipe(
-      catchError(this.errorHandler)
-    )
+    return this.http.get(`${this.URL}make/list`);
+   
   }
 
   createLanguage(data:any):Observable<any>{
     return this.http.post(`${this.URL}languages/create`,data).pipe(
       tap(() =>{
         this._refreshNeeded.next();
-      }),
-      catchError(this.errorHandler)
+      })
     )
   }
 
@@ -55,8 +49,7 @@ export class MastersService {
     return this.http.post(`${this.URL}bloodgroups/create`,data).pipe(
       tap(() =>{
         this._refreshNeeded.next();
-      }),
-      catchError(this.errorHandler)
+      })
     )
   }
 
@@ -64,27 +57,11 @@ export class MastersService {
     return this.http.post(`${this.URL}make/create`,data).pipe(
       tap(() =>{
         this._refreshNeeded.next();
-      }),
-      catchError(this.errorHandler)
+      })
     )
   }
 
   getVehicleType():Observable<any>{
-    return this.http.get(`${this.URL}vtype/list`).pipe(
-      catchError(this.errorHandler)
-    )
+    return this.http.get(`${this.URL}vtype/list`)
   }
-
-  errorHandler(error) {
-    let errorMessage = '';
-    if(error.error instanceof ErrorEvent) {
-      // Get client-side error
-      errorMessage = error.error.message;
-    } else {
-      // Get server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    console.log(errorMessage);
-    return throwError(errorMessage);
- }
 }

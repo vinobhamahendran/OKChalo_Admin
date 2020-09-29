@@ -71,15 +71,18 @@ export class DriverCreateComponent implements OnInit {
       return;
     }
     console.log(this.vehicleform.value, this.driverform.value)
-    // this.service.addDriver(this.driverform.value).subscribe(resp => {
-    //   this.vehicle.value.forEach(element => {
-    //     element.driver_id = resp.id;
-    //     this.service.addVehicle(element).subscribe(res => {
-    //     });
+    this.service.addDriver(this.driverform.value).subscribe(resp => {
+      this.vehicle.value.forEach(element => {
+        element.driver_id = resp.id;
+        this.service.addVehicle(element).subscribe(res => {
+        });
 
-    //   });
+      });
 
-    // });
+    },
+    (error)=>{
+      console.log(error);
+    });
     
     this.opensuccessalert();
     this.driverform.reset();
@@ -90,17 +93,26 @@ export class DriverCreateComponent implements OnInit {
   getlanguagelist() {
     this.languageservice.getLanguageList().subscribe(res => {
       this.languagelist = res;
+    },
+    (error)=>{
+      console.log(error);
     })
   }
   getBloodGrouplist() {
     this.languageservice.getBloodGroupList().subscribe(res => {
       this.bloodGrouplist = res;
+    },
+    (error)=>{
+      console.log(error);
     })
   }
   getvehicletype() {
     this.languageservice.getVehicleType().subscribe(res => {
       this.vehicletype = res;
       console.log(res);
+    },
+    (error)=>{
+      console.log(error);
     })
   }
 

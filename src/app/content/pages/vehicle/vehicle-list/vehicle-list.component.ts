@@ -41,6 +41,9 @@ export class VehicleListComponent implements OnInit,OnDestroy {
       this._vehiclelist = res ;
       console.log(this._vehiclelist);
       this.dtTrigger.next();
+    },
+    (error)=>{
+      console.log(error);
     })
   }
 

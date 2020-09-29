@@ -20,41 +20,30 @@ export class DriversService {
   }
 
   getAllDriver():Observable<any>{
-    return this.http.get<any>(`${this.URL}drivers/list`).pipe(catchError(this.errorHandler))
+    return this.http.get<any>(`${this.URL}drivers/list`)
   }
 
   addDriver(data:DriverModel):Observable<any>{
     return this.http.post(`${this.URL}drivers/create/`,data).pipe(
       tap(() =>{
         this._refreshNeeded.next();
-      }),catchError(this.errorHandler))
+      }))
   }
 
   getDriverById(id : number):Observable<any>{
-    return this.http.get<any>(`${this.URL}drivers/get/${id}`).pipe(catchError(this.errorHandler))
+    return this.http.get<any>(`${this.URL}drivers/get/${id}`)
   }
   getDriverByMobileno(mobile_number:any):Observable<any>{
-    return this.http.get(`${this.URL}drivers/profile/${mobile_number}`).pipe(catchError(this.errorHandler))
+    return this.http.get(`${this.URL}drivers/profile/${mobile_number}`)
   }
   getVehicleByDriverId(id:any):Observable<any>{
-    return this.http.get(`${this.URL}vehicle/get_driver_vehicles/${id}`).pipe(catchError(this.errorHandler))
+    return this.http.get(`${this.URL}vehicle/get_driver_vehicles/${id}`)
   }
 
   addVehicle(data:any):Observable<any>{
     return this.http.post(`${this.URL}vehicle/create`,data).pipe(
       tap(() =>{
         this._refreshNeeded.next();
-      }),catchError(this.errorHandler))
+      }))
   }
-
-  errorHandler(error) {
-    let errorMessage = '';
-    if(error.error instanceof ErrorEvent) {
-      errorMessage = error.error.message;
-    } else {
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    console.log(errorMessage);
-    return throwError(errorMessage);
- }
 }

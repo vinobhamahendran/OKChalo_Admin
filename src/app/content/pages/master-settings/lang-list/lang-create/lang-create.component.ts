@@ -38,6 +38,9 @@ export class LangCreateComponent implements OnInit {
     this.service.createLanguage(this.createLanguageForm.value).subscribe(res =>{
       this.modal.close();
       this.opensuccessalert();     
+    },
+    (error)=>{
+      console.log(error);
     })
     
   }

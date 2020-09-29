@@ -51,16 +51,25 @@ export class PassengersComponent implements OnInit, OnDestroy {
       this.passengers = mergeById(res, this._languagelist, this._bloodgrouplist);
       console.log(this.passengers);
       this.dtTrigger.next();
+    },
+    (error)=>{
+      console.log(error.error);
     })
   }
   languageList() {
     this.masterservice.getLanguageList().subscribe(res => {
       this._languagelist = res;
+    },
+    (error)=>{
+      console.log(error.error);
     })
   }
   bloodgrouplist() {
     this.masterservice.getBloodGroupList().subscribe(res => {
       this._bloodgrouplist = res;
+    },
+    (error)=>{
+      console.log(error);
     })
   }
   viewItem(datas: any) {

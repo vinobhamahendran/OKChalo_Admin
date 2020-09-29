@@ -20,6 +20,9 @@ export class VehicleComponent implements OnInit {
   vehicleList(){
     this.service.getVehicleType().subscribe(res => {
       this._vehiclelist = res;
+    },
+    (error)=>{
+      console.log(error);
     })
   }
 

@@ -24,6 +24,9 @@ export class RideViewComponent implements OnInit {
       {
         console.log(res);
         this.viewRides = res;
+      },
+      (error)=>{
+        console.log(error.error.message);
       })
   }
 }

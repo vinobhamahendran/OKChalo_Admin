@@ -10,24 +10,30 @@
         <h1 class="text-center">Admin Login</h1>
       <div class="dt-login__content">  
         <div class="dt-login__content-inner">
-          <form>
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmitSignIn()">
               <div class="form-group">
               <label class="" for="username">Username</label>
               <input type="text"
                      class="form-control"
                      id="username"
-                      required>
+                      required formControlName="username" [ngClass]="{'is-invalid':formsubmitted && f.username.errors}">
+                      <div *ngIf="formsubmitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required">Username is required</div>
+                      </div>
             </div>
             <div class="form-group">
               <label class="" for="password">password</label>
               <input type="password"
                      class="form-control"
                      id="password"
-                      required>
+                      required formControlName="password" [ngClass]="{'is-invalid': formsubmitted && f.password.errors}">
+                      <div *ngIf="formsubmitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                      </div>
             </div>
   
             <div class="form-group">
-              <button type="submit" class="btn btn-primary text-uppercase" (click)='onSubmit()'>Login</button>
+              <button type="submit" class="btn btn-primary text-uppercase">Login</button>
 
             </div>
     

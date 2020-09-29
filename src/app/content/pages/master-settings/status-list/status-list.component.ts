@@ -19,6 +19,9 @@ export class StatusListComponent implements OnInit {
     this.service.getStatusList().subscribe(res => {
       console.log(res);
       this.statusListdata = res;
+    },
+    (error)=>{
+      console.log(error);
     })
   }
 

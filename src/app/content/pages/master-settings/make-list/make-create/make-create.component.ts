@@ -37,6 +37,9 @@ export class MakeCreateComponent implements OnInit {
       console.log(res);
       this.modal.close();
       this.opensuccessalert();
+    },
+    (error)=>{
+      console.log(error);
     })
 
   }

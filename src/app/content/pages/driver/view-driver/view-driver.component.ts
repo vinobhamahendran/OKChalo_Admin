@@ -25,12 +25,13 @@ export class ViewDriverComponent implements OnInit {
   }
   vehicleinfo(){
     this.service.getVehicleByDriverId(this.datas.driver_id).subscribe(res =>{
-      if(res){
         this._vehicleinfo =res;
-      }
-     
-      console.log(res);
+        console.log(res);
+    },
+    (error)=>{
+      console.log(error.error.message);
     })
+    
   }
 
 }

@@ -39,9 +39,7 @@ export class RideDetailsComponent implements OnInit, OnDestroy {
       order: [0, 'desc'] //asc,desc
     }
     $('.statusfilter').on('change', function () {
-
       var v = $(this).val();  // getting search input value
-
       $('#dataTables-example').DataTable().columns(7).search(v).draw();
     });
 
@@ -53,17 +51,26 @@ export class RideDetailsComponent implements OnInit, OnDestroy {
   passengerlist() {
     this.passengerservice.getAll().subscribe(res => {
       this._passengerlist = res;
-    })
+    },
+      (error) => {
+        console.log(error);
+      })
   }
   driverlist() {
     this.driverservice.getAllDriver().subscribe(res => {
       this._driverlist = res;
-    })
+    },
+      (error) => {
+        console.log(error);
+      })
   }
   statuslist() {
     this.masterservice.getStatusList().subscribe(res => {
       this._statuslist = res;
-    })
+    },
+      (error) => {
+        console.log(error);
+      })
   }
 
   allRides() {
@@ -81,7 +88,10 @@ export class RideDetailsComponent implements OnInit, OnDestroy {
       this.rideDetails = mergeById(response, this._passengerlist, this._driverlist, this._statuslist);
       console.log(this.rideDetails);
       this.dtTrigger.next();
-    })
+    },
+      (error) => {
+        console.log(error);
+      })
   }
 
   viewRides(id: any) {
@@ -90,13 +100,3 @@ export class RideDetailsComponent implements OnInit, OnDestroy {
   }
 
 }
-// let mergeddata = response.map((item)=> Object.assign({},item,this._passengerlist[item.customer_id],this._driverlist[item.driver_id]));
-// let Driver = response.map((item) => Object.assign({}));
-
-// response.forEach(element => {
-//   if(element.status_id === 1){
-//     element.status_id = 'Requested'
-//   }else if(element.status_id === 2){
-//     element.status_id = 'Confirmed'
-//   }       
-// })
