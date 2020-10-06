@@ -31,16 +31,11 @@ export class AdminListComponent implements OnInit,OnDestroy {
   }
   getAllAdmin(){
     this.service.getAdmin().subscribe(res => {
-      console.log(res);
       this.adminList = res;
       this.dtTrigger.next();
-    },
-    (error)=>{
-      console.log(error);
     })
   }
   viewItem(data:any){
-    console.log(data);
   }
 
 }

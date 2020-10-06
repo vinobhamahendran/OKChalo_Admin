@@ -8,25 +8,18 @@ import { RideService } from '@app/content/service/ride.service';
   styleUrls: ['./ride-view.component.scss']
 })
 export class RideViewComponent implements OnInit {
-  breadcrumb = [{label:'Home',route:'/dashboard'},{label:'Ride Details',route:'/ride-details'},{label:'View Ride-Details',active:true}]
-  rideId : any;
-  viewRides:any;
-  constructor(private router:Router,private activatedRoute : ActivatedRoute,private service : RideService) { }
-
+  breadcrumb = [{ label: 'Home', route: '/dashboard' }, { label: 'Ride Details', route: '/ride-details' }, { label: 'View Ride-Details', active: true }]
+  rideId: any;
+  viewRides: any;
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private service: RideService) { }
 
   ngOnInit(): void {
-    this.rideId=this.activatedRoute.snapshot.params['id'];
-    console.log(this.rideId);
+    this.rideId = this.activatedRoute.snapshot.params['id'];
     this.viewDetails();
   }
-  viewDetails(){
-    this.service.getRideDetails(this.rideId).subscribe(res =>
-      {
-        console.log(res);
-        this.viewRides = res;
-      },
-      (error)=>{
-        console.log(error.error.message);
-      })
+  viewDetails() {
+    this.service.getRideDetails(this.rideId).subscribe(res => {
+      this.viewRides = res;
+    })
   }
 }

@@ -39,11 +39,7 @@ export class VehicleListComponent implements OnInit,OnDestroy {
   vehicleList(){
     this.service.getVehicleList().subscribe(res => {
       this._vehiclelist = res ;
-      console.log(this._vehiclelist);
       this.dtTrigger.next();
-    },
-    (error)=>{
-      console.log(error);
     })
   }
 

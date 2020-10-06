@@ -33,13 +33,5 @@ export class SigninComponent {
     }
     console.log(this.loginForm.value)
     this.authService.signinUser(this.f.username.value, this.f.password.value);
-    this.message = localStorage.getItem('logininfo');
-    if(this.message){     
-      this.opensuccessalert();
-    }
-  }
-
-  opensuccessalert() {
-    Swal.fire(this.message);
   }
 }

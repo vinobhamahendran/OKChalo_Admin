@@ -59,13 +59,14 @@
             </div>
         </li>  
     </ul>
+    <div *ngIf="novehicel"><button class="btn btn-success btn-sm text-uppercase" (click)="addVehicleInfo(datas)">Add Vehicle Information</button></div>
     <div *ngIf="_vehicleinfo">
     <hr class="border-dashed my-4">
     <div class="">
         <h1>Vehicle Information :</h1>
     </div>
     <hr class="border-dashed my-4">
-    <ul class="dt-list dt-list-col-4">
+    <ul class="dt-list dt-list-col-6">
         <li class="dt-list__item">
             <div class="media-body">
                 <span class="d-block text-light-gray f-15 mb-1">Vehicle Type</span>
@@ -84,6 +85,12 @@
                 <p class="h5 mb-4" *ngIf="_vehicleinfo">{{_vehicleinfo.capacity}}</p>
             </div>
         </li> 
+        <li class="dt-list__item">
+            <div class="media-body">
+                <span class="d-block text-light-gray f-15 mb-1">Active</span>
+                <p class="h5 mb-4" *ngIf="_vehicleinfo">{{_vehicleinfo.active}}</p>
+            </div>
+        </li>
     </ul>
     </div>
 </card-body>

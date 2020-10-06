@@ -13,6 +13,9 @@ import {DefaultLayoutComponent} from './default-layout.component';
 import {HeaderComponent} from './partials/header/header.component';
 import {FooterComponent} from './partials/footer/footer.component';
 import {NavbarVerticalComponent} from './partials/navbar/navbar-vertical/navbar-vertical.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoaderInterceptorService } from '@app/content/service/loader-interceptor.service';
+
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -42,7 +45,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
-    }
+    },
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptorService, multi: true }
   ]
 })
 export class DefaultLayoutModule {

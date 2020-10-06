@@ -23,11 +23,7 @@ export class MakeListComponent implements OnInit {
 
   makeList(){
     this.service.getMakeList().subscribe(res => {
-      console.log(res);
       this.makeListdata = res;
-    },
-    (error)=>{
-      console.log(error);
     })
   }
 

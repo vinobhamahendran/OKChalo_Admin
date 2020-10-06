@@ -1,0 +1,79 @@
+<div class="profile__banner">
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="profile__banner-detail">
+
+                <div class="dt-avatar-wrapper" *ngIf="user">
+                    <div class="dt-avatar-info">
+                        <span
+                            class="dt-avatar-name display-4 mb-2 font-weight-light">{{user.first_name + ' ' + user.last_name}}</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="profile__banner-navigation">
+                <div class="pl-3 ml-auto" ngbDropdown placement="bottom-right">
+                    <a href="javascript:void(0)" class="no-arrow text-white" ngbDropdownToggle>
+                        <gx-icon name="settings" size="xl" class="mr-2"></gx-icon><span
+                            class="d-none d-sm-inline-block">Settings</span>
+                    </a>
+                    <div ngbDropdownMenu>
+                        <a class="dropdown-item" href="javascript:void(0)">Edit Profile</a>
+                        <a class="dropdown-item" href="javascript:void(0)">Change Password</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+<div class="profile-content">
+    <div class="row">
+        <div class="col-xl-8 order-xl-1">
+            <gx-card [fullHeight]="true" card-title="Profile" header-class="pt-6">
+                <ul class="dt-list dt-list-col-4">
+                    <li class="dt-list__item">
+                        <div class="media-body">
+                            <span class="d-block text-light-gray f-15 mb-1">First Name</span>
+                            <p class="h5 mb-4">{{user.first_name}}</p>
+                        </div>
+                    </li>
+                    <li class="dt-list__item">
+                        <div class="media-body">
+                            <span class="d-block text-light-gray f-15 mb-2">Last Name</span>
+                            <p class="h5 mb-4">{{user.last_name}}</p>
+                        </div>
+                    </li>
+                    <li class="dt-list__item">
+                        <div class="media-body">
+                            <span class="d-block text-light-gray f-15 mb-1">Username</span>
+                            <p class="h5 mb-4">{{user.username}}</p>
+                        </div>
+                    </li>
+                </ul>
+            </gx-card>
+        </div>
+        <div class="col-xl-4 order-xl-2">
+            <div class="row">
+                <div class="col-xl-12 col-md-6 col-12 order-xl-1" *ngIf="user">
+                    <gx-card [fullHeight]="true" card-title="Contact" header-class="pt-6">
+                        <gx-media-icon-card class="mb-5" label="Mail">
+                            <gx-icon name="mail" size="xl" class="mr-5" icon></gx-icon>
+                            <span class="h5" text>{{user.email}}</span>
+                        </gx-media-icon-card>
+                        <gx-media-icon-card label="Phone">
+                            <gx-icon name="phone-o" size="xl" class="mr-5" icon></gx-icon>
+                            <span class="h5" text>{{user.mobile_number}}</span>
+                        </gx-media-icon-card>
+                    </gx-card>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

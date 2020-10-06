@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AdminService } from '@app/content/service/admin.service';
-import Swal from 'sweetalert2';
+import { NotificationService } from '@app/content/service/notification.service';
 
 @Component({
   selector: 'app-admin-create',
@@ -11,7 +11,8 @@ import Swal from 'sweetalert2';
 })
 export class AdminCreateComponent implements OnInit {
   breadcrumb = [{ label: 'Home', route: '/dashboard' }, { label: 'Admin-Create-new', active: true }];
-  constructor(private service: AdminService, private formBuilder: FormBuilder, private route: Router) { }
+  constructor(private service: AdminService,private notify:NotificationService,
+     private formBuilder: FormBuilder, private route: Router) { }
   createAdminForm: FormGroup;
   submitted = false;
   fieldTextType: boolean;
@@ -41,14 +42,11 @@ export class AdminCreateComponent implements OnInit {
       return;
     }
     this.service.createAdmin(this.createAdminForm.value).subscribe(res => {
-      console.log(res);
-    },
-      (error) => {
-        console.log(error);
-      });
-    this.opensuccessalert();
+    });
+    this.notify.showSuccess('Admin Added SuccessFully');
     this.createAdminForm.reset();
     this.submitted = false;
+   
   }
   MustMatch(controlName: string, matchingControlName: string) {
     return (formGroup: FormGroup) => {
@@ -73,9 +71,6 @@ export class AdminCreateComponent implements OnInit {
 
   toggleRepeatFieldTextType() {
     this.repeatFieldTextType = !this.repeatFieldTextType;
-  }
-  opensuccessalert() {
-    Swal.fire('Success', 'Admin Added Successfully!', 'success');
   }
 
 }

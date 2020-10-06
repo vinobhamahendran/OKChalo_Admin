@@ -1,8 +1,9 @@
-import {Component, HostBinding, HostListener, OnDestroy, OnInit} from '@angular/core';
-import {Subscription} from 'rxjs/Subscription';
-import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
-import {SettingsService} from '@app/settings/settings.service';
-import {AuthService} from '@app/layouts/auth-layout/auth.service';
+import { Component, HostBinding, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { SettingsService } from '@app/settings/settings.service';
+import { AuthService } from '@app/layouts/auth-layout/auth.service';
+import { AdminService } from '@app/content/service/admin.service';
 
 @Component({
   selector: 'app-header',
@@ -26,11 +27,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   ];
   currentLanguage: any;
-  currentUser: any = {
-    name: 'Super Admin',
-    thumb: 'https://via.placeholder.com/150x150',
-    position: 'Administrator'
-  };
+  currentUser: any;
+  // = {
+  //   name: 'Super Admin',
+  //   thumb: 'https://via.placeholder.com/150x150',
+  //   position: 'Administrator'
+  // };
 
   logoImageUrl = 'assets/images/logo.png';
 
@@ -38,8 +40,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   onLanguageChanged: Subscription;
 
   constructor(private settingService: SettingsService,
-              public translate: TranslateService,
-              private authService: AuthService) {
+    public translate: TranslateService,
+    private authService: AuthService,private adminService:AdminService) {
     this.setActiveLang(this.translate.currentLang);
     this.onLanguageChanged = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.setActiveLang(event.lang);
@@ -50,6 +52,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.isNavFolded = this.settings.navigationStyle === 'folded' && window.innerWidth >= 992;
 
     });
+    this.getcurrentUser();
   }
 
   @HostListener('window:resize')
@@ -74,7 +77,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   setActiveLang(lang: string) {
     this.languages.forEach((language) => {
-      if(language.id === lang) {
+      if (language.id === lang) {
         this.currentLanguage = language;
       }
     });
@@ -84,6 +87,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.translate.use(lang.id);
     localStorage.setItem('language', lang.id);
   }
+  getcurrentUser(){
+    let id=localStorage.getItem('currentUser');
+    this.adminService.getAdminById(id).subscribe(res =>{
+      let name = (res.first_name + res.last_name);
+      localStorage.setItem('username',name);
+      this.currentUser = localStorage.getItem('username');
+      console.log(this.currentUser);
+    })
+  }
 
   /**
    * Logout user
@@ -91,7 +103,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
    */
   onLogout(event) {
     event.preventDefault();
-
     this.authService.logout();
   }
 

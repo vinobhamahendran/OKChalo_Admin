@@ -32,11 +32,9 @@
 
           <!-- Dropdown Link -->
           <a href="javascript:void(0)" class="dt-nav__link no-arrow dt-avatar-wrapper"
-             ngbDropdownToggle>
-
-            <gx-avatar [user]="currentUser" class="size-30"></gx-avatar>
-            <span class="dt-avatar-info d-none d-sm-block">
-                <span class="dt-avatar-name">{{currentUser.name}}</span>
+             ngbDropdownToggle *ngIf="currentUser">
+            <span class="dt-avatar-info  d-sm-block">
+              <span class="dt-avatar-name" *ngIf="currentUser">{{currentUser}}</span>
               </span>
           </a>
           <!-- /dropdown link -->
@@ -44,12 +42,15 @@
           <!-- Dropdown Option -->
           <div ngbDropdownMenu>
             <div class="dt-avatar-wrapper flex-nowrap p-6 mt-n2 bg-gradient-purple text-white rounded-top">
-              <gx-avatar [user]="currentUser"></gx-avatar>
               <span class="dt-avatar-info">
-                  <span class="dt-avatar-name">{{currentUser.name}}</span>
-                  <span class="f-12">{{currentUser.position}}</span>
+                  <span class="dt-avatar-name" *ngIf="currentUser">{{currentUser}}</span>
+                  <!-- <span class="f-12">{{currentUser.position}}</span> -->
                 </span>
             </div>
+            <a class="dropdown-item" href="javascript:void(0)" routerLink="/profile">
+              <gx-icon name="user" [fw]="true" class="mr-2 mr-sm-1"></gx-icon>
+              Account
+            </a>
             <a class="dropdown-item" href="#logout" (click)="onLogout($event)">
               <gx-icon name="editors" [fw]="true" class="mr-2 mr-sm-1"></gx-icon>
               Logout

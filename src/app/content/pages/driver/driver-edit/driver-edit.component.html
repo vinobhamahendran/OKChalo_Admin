@@ -1,0 +1,97 @@
+<card-header>
+    <card-heading>
+        <h1>Add Vehicle</h1>
+        <hr class="border-dashed my-4">
+    </card-heading>
+    <card-tool>
+        <div ngbDropdown placement="bottom-right">
+            <button type="button" class="close" data-dismiss="modal" (click)="modal.dismiss('Cross click')">×</button>
+        </div>
+    </card-tool>
+    
+</card-header>
+
+<card-body>
+    
+    <div class="row">
+        <div class="col-12">
+            <div class="col-sm-6 mb-3 form-group form-row" style="margin-left:-15px">
+                <label class="control-label" for="name">Driver Name</label>
+                <input type="text" class="form-control" id="name" [value]="datas.first_name" disabled>
+            </div>
+            <form [formGroup]='vehicleform'>
+                <div formArrayName="vehicles">
+                    <div *ngFor="let vehicles of vehicles().controls; let vehicleIndex=index">
+                        <div class="dt-card__heading mb-6">
+                            <h3 class="dt-card__title">Vehicle Information : {{vehicleIndex+1}}</h3>
+                        </div>
+                        <div [formGroupName]="vehicleIndex">
+                            <div class="form-row mb-4">
+                                <div class="col-sm-6 mb-3 form-group">
+                                    <label class="control-label" for="vehicleno">Vehicle Registration Number</label>
+                                    <input type="text" class="form-control" id="vehicleno" placeholder="Vehicle Number"
+                                        formControlName="vehicle_registration_number"
+                                        [ngClass]="{'is-invalid':submitted && vehicle.controls[vehicleIndex].get('vehicle_registration_number').errors}">
+                                    <div *ngIf="vehicle.controls[vehicleIndex].get('vehicle_registration_number').errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="submitted && vehicle.controls[vehicleIndex].get('vehicle_registration_number').errors.required"
+                                           >
+                                            Vehicle Registration Number is required</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 mb-3 form-group">
+                                    <label class="control-label" for="vehicletype">Vehicle Type</label>
+                                    <select class="form-control" id="vehicletype" formControlName="vehicle_type_id"
+                                        [ngClass]="{'is-invalid':submitted && vehicle.controls[vehicleIndex].get('vehicle_type_id').errors}">
+                                        <option [ngValue]='null' disabled selected>Select Vehicle Type</option>
+                                        <option *ngFor="let vehicletypedata of vehicletype"
+                                            [ngValue]="vehicletypedata.vehicle_type_id">
+                                            {{vehicletypedata.vehicle_type}}</option>
+                                    </select>
+                                    <div *ngIf="vehicle.controls[vehicleIndex].get('vehicle_type_id').errors"
+                                        class="invalid-feedback">
+                                        <div
+                                            *ngIf="submitted && vehicle.controls[vehicleIndex].get('vehicle_type_id').errors.required">
+                                            Vehicle Type
+                                            is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row mb-4">
+                                <div class="col-sm-6 mb-3 form-group">
+                                    <label class="control-label" for="capacity">Capacity</label>
+                                    <input type="text" class="form-control" id="capacity" placeholder="Capacity"
+                                        formControlName="capacity"
+                                        [ngClass]="{'is-invalid':submitted && vehicle.controls[vehicleIndex].get('capacity').errors}">
+                                    <div *ngIf="vehicle.controls[vehicleIndex].get('capacity').errors"
+                                        class="invalid-feedback">
+                                        <div
+                                            *ngIf="submitted && vehicle.controls[vehicleIndex].get('capacity').errors.required">
+                                            Capacity
+                                            is required</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 my-6 form-group">
+                                    <button (click)="removeVehicle(vehicleIndex)"
+                                        class="btn btn-danger btn-sm text-uppercase">Remove</button>
+                                </div>
+                            </div>
+                            <hr class="border-dashed my-8">
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <button (click)="addVehicle()" class="btn btn-success btn-sm text-uppercase">Add Vehicle Info</button>
+                </div>
+
+                <div class="form-group mb-0">
+                    <button type="submit" class="btn btn-primary text-uppercase" (click)="addDriver()">Submit</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</card-body>

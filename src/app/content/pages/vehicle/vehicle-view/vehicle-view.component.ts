@@ -14,13 +14,11 @@ export class VehicleViewComponent implements OnInit {
   constructor(private service : VehicleService,public modal:NgbActiveModal) { }
 
   ngOnInit(): void {
-    console.log(this._vehicleData);
     this.vehicleByid();
   }
 
   vehicleByid(){
-    this.service.getVehicleById(this._vehicleData.vehicle_id);
-    
+    this.service.getVehicleById(this._vehicleData.vehicle_id);   
   }
 
 }

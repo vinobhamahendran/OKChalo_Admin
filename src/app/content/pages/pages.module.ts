@@ -33,6 +33,10 @@ import { ViewPassengersComponent } from './passengers/view-passengers/view-passe
 import { VehicleComponent } from './master-settings/vehicle/vehicle.component';
 import { VehicleListComponent } from './vehicle/vehicle-list/vehicle-list.component';
 import { VehicleViewComponent } from './vehicle/vehicle-view/vehicle-view.component';
+import { ProfileComponent } from './profile/profile.component';
+import { DriverEditComponent } from './driver/driver-edit/driver-edit.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoaderInterceptorService } from '../service/loader-interceptor.service';
 
 
 const appsRoutes: Routes = [
@@ -115,6 +119,10 @@ const appsRoutes: Routes = [
   {
     path:'vehicle-list',
     component:VehicleListComponent
+  },
+  {
+    path:'profile',
+    component:ProfileComponent
   }
   
 ];
@@ -155,9 +163,14 @@ const appsRoutes: Routes = [
     ViewPassengersComponent,
     VehicleComponent,
     VehicleListComponent,
-    VehicleViewComponent
+    VehicleViewComponent,
+    ProfileComponent,
+    DriverEditComponent
     
-  ]
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptorService, multi: true }
+  ],
 })
 export class PagesModule {
 }

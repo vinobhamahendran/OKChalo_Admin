@@ -18,42 +18,6 @@ export class NavigationModel implements NavigationModelInterface {
             icon: 'dashboard',
             url: '/dashboard'
           },
-          // {
-          //   id: 'feeschedule',
-          //   title: 'Fee Schedule',
-          //   type: 'collapse',
-          //   icon: 'assignment',
-          //   children:[
-          //     {
-          //       id: 'feepassenger',
-          //       title: 'Passenger',
-          //       type: 'item',
-          //       icon: '',
-          //       url: '/feepassenger-list'
-          //     },
-          //     {
-          //       id: 'feedriver',
-          //       title: 'Driver',
-          //       type: 'item',
-          //       icon: '',
-          //       url: '/feedriver-list'
-          //     }
-          //   ]
-          // },
-          // {
-          //   id: 'paymentgateway',
-          //   title: 'Payment Gateway',
-          //   type: 'item',
-          //   icon: 'price-list',
-          //   url: '/paymentgateway'
-          // },
-          // {
-          //   id: 'accountsummary',
-          //   title: 'Account Summary',
-          //   type: 'item',
-          //   icon:'dollar',
-          //   url: '/account-summary'
-          // },
           {
             id: 'drivers',
             title: 'Drivers',
@@ -96,6 +60,42 @@ export class NavigationModel implements NavigationModelInterface {
             type: 'item',
             icon: 'profit',
             url:'/ride-details'
+          },
+          {
+            id: 'feeschedule',
+            title: 'Fee Schedule',
+            type: 'collapse',
+            icon: 'assignment',
+            children:[
+              {
+                id: 'feepassenger',
+                title: 'Passenger',
+                type: 'item',
+                icon: '',
+                url: '/feepassenger-list'
+              },
+              {
+                id: 'feedriver',
+                title: 'Driver',
+                type: 'item',
+                icon: '',
+                url: '/feedriver-list'
+              }
+            ]
+          },
+          {
+            id: 'paymentgateway',
+            title: 'Payment Gateway',
+            type: 'item',
+            icon: 'price-list',
+            url: '/paymentgateway'
+          },
+          {
+            id: 'accountsummary',
+            title: 'Account Summary',
+            type: 'item',
+            icon:'dollar',
+            url: '/account-summary'
           },
           {
             id:'admin',

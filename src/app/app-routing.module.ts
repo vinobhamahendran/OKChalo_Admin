@@ -6,7 +6,7 @@ const appRoutes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/signin'
+    redirectTo: '/dashboard'
   },
   {
     path:'',
@@ -19,7 +19,7 @@ const appRoutes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/signin'
+    redirectTo: '/dashboard'
   }
 ];
 

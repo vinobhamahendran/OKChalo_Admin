@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { identifierName } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {environment} from 'src/environments/environment'
@@ -16,5 +17,8 @@ export class AdminService {
   }
   getAdmin():Observable<any>{
     return this.http.get(`${this.URL}admin/list`);
+  }
+  getAdminById(id : any):Observable<any>{
+    return this.http.get(`${this.URL}admin/get/${id}`);
   }
 }

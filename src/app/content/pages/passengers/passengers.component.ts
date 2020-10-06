@@ -19,8 +19,9 @@ export class PassengersComponent implements OnInit, OnDestroy {
   dtTrigger: Subject<any> = new Subject();
   _languagelist: any;
   _bloodgrouplist: any;
-  constructor(private router: Router, private service: PassengersService, private masterservice: MastersService,
+  constructor(private service: PassengersService, private masterservice: MastersService,
     private modalService: NgbModal) { }
+    
   ngOnInit(): void {
     this.languageList(); this.bloodgrouplist();
     this.dtOptions = {
@@ -41,7 +42,8 @@ export class PassengersComponent implements OnInit, OnDestroy {
   getAllPassengers() {
     this.service.getAll().subscribe(res => {
       this.languageList(); this.bloodgrouplist();
-      // let mergeddata = res.map((item) => Object.assign({},item,this._languagelist[item.language_id],this._bloodgrouplist[item.blood_group_id]));
+      // let notnull = res.filter(f => f.first_name != null);
+      // console.log(notnull)     
       const mergeById = (a1, a2, a3) =>
         a1.map(customer => ({
           language: { ...a2.find((item) => (item.language_id === customer.language_id) && item) },
@@ -49,31 +51,20 @@ export class PassengersComponent implements OnInit, OnDestroy {
           ...customer
         }));
       this.passengers = mergeById(res, this._languagelist, this._bloodgrouplist);
-      console.log(this.passengers);
       this.dtTrigger.next();
-    },
-    (error)=>{
-      console.log(error.error);
     })
   }
   languageList() {
     this.masterservice.getLanguageList().subscribe(res => {
       this._languagelist = res;
-    },
-    (error)=>{
-      console.log(error.error);
     })
   }
   bloodgrouplist() {
     this.masterservice.getBloodGroupList().subscribe(res => {
       this._bloodgrouplist = res;
-    },
-    (error)=>{
-      console.log(error);
     })
   }
   viewItem(datas: any) {
-    console.log(datas);
     const ref = this.modalService.open(ViewPassengersComponent, { size: 'lg', centered: true, backdrop: true });
     ref.componentInstance.datas = datas;
   }

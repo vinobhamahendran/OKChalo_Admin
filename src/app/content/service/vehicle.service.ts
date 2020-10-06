@@ -17,11 +17,8 @@ export class VehicleService {
   }
 
   getVehicleById(vehicle_id:any){
-    this.http.get(`${this.URL}get_by_vehicle_id/${vehicle_id}`,{ observe: 'response' }).
-    subscribe(response =>{
-    console.log(response);
-    })
-  }
+    this.http.get(`${this.URL}get_by_vehicle_id/${vehicle_id}`);
+}
 
 }
 

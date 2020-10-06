@@ -33,14 +33,10 @@ export class BloodgroupCreateComponent implements OnInit {
     if(this.createBloodgroupform.invalid){
       return;
     }
-    console.log(this.createBloodgroupform.value);
+   
     this.service.createBloodGroup(this.createBloodgroupform.value).subscribe(res =>{
-      console.log(res);
       this.modal.close();
       this.opensuccessalert();
-    },
-    (error)=>{
-      console.log(error);
     })
   }
 

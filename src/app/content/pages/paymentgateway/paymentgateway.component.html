@@ -3,62 +3,25 @@
     <app-page-header pageTitle="Payment Gateway"></app-page-header>
   </div>
   <div class="col-xl-6">
-    <gx-breadcrumbs displayAs="nav" class="mb-0" [data]="breadcrumb"></gx-breadcrumbs>  
+    <gx-breadcrumbs displayAs="nav" class="mb-0" [data]="breadcrumb"></gx-breadcrumbs>
   </div>
 </div>
-<!-- Form Row -->
-        <div class="row">
-          
-          <div class="col-xl-12">
-            <gx-card card-title="Select Payment Gateway">
-            <form class="form" autocomplete="off">
-            <!-- Checkbox -->
-            <div class="custom-control custom-checkbox mb-3">
-              <input type="checkbox" id="bhim" name="customcheckboxInline1"
-                     class="custom-control-input">
-              <label class="custom-control-label" for="bhim">BHIM</label>
-            </div>
-            <!-- /checkbox -->
+<div class="row">
 
-            <!-- Checkbox -->
-            <div class="custom-control custom-checkbox mb-3">
-              <input type="checkbox" id="googlepay" name="customcheckboxInline1"
-                     class="custom-control-input">
-              <label class="custom-control-label" for="googlepay">GooglePay</label>
-            </div>
-            <!-- /checkbox -->
-
-            <!-- Checkbox -->
-            <div class="custom-control custom-checkbox mb-3">
-              <input type="checkbox" id="whatsapppay" name="customcheckboxInline1"
-                     class="custom-control-input">
-              <label class="custom-control-label" for="whatsapppay">WhatsApp Pay</label>
-            </div>
-            <!-- /checkbox -->
-
-            <!-- Checkbox -->
-            <div class="custom-control custom-checkbox mb-3">
-              <input type="checkbox" id="payu" name="customcheckboxInline1"
-                     class="custom-control-input">
-              <label class="custom-control-label" for="payu">PayU</label>
-            </div>
-            <!-- /checkbox -->
-
-             <!-- Checkbox -->
-             <div class="custom-control custom-checkbox mb-3">
-              <input type="checkbox" id="paytm" name="customcheckboxInline1"
-                     class="custom-control-input">
-              <label class="custom-control-label" for="paytm">PayTM</label>
-            </div>
-            <!-- /checkbox -->
-			
-			<!-- Form Group -->
-          <div class="form-group mt-4">
-            <button type="submit" class="btn btn-primary text-uppercase">Submit</button>
-          </div>
-          <!-- /form group -->
-          </form>
-		  </gx-card>
-          </div>
+  <div class="col-xl-12">
+    <gx-card card-title="Select Payment Gateway">
+      <form class="form" autocomplete="off" [formGroup]="paymentform" (ngSubmit)="onSubmit()">
+        <div *ngFor="let data of Options ; let i=index" >
+        <div class="custom-control custom-checkbox mb-3">
+          <input type="checkbox" id="{{data.value}}" class="custom-control-input"
+             [value]="data.value" (change)="onCheckboxChange($event)">
+          <label class="custom-control-label" for="{{data.value}}">{{data.name}}</label>
         </div>
-        <!-- /form row -->
+        </div>
+        <div class="form-group mt-4">
+          <button type="submit" class="btn btn-primary text-uppercase">Submit</button>
+        </div>
+      </form>
+    </gx-card>
+  </div>
+</div>

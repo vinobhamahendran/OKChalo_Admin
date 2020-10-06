@@ -1,20 +1,22 @@
-import {Component, HostBinding} from '@angular/core';
-import {NavigationEnd, NavigationStart, Router} from '@angular/router';
-import {Location} from '@angular/common';
+import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { Location } from '@angular/common';
 import * as firebase from 'firebase';
-import {Subscription} from 'rxjs/Subscription';
-import {NgProgress} from 'ngx-progressbar';
-import {TranslateService} from '@ngx-translate/core';
+import { Subscription } from 'rxjs/Subscription';
+import { NgProgress } from 'ngx-progressbar';
+import { TranslateService } from '@ngx-translate/core';
 
-import {AuthService} from '@app/layouts/auth-layout/auth.service';
-import {SettingsService} from '@app/settings/settings.service';
+import { AuthService } from '@app/layouts/auth-layout/auth.service';
+import { SettingsService } from '@app/settings/settings.service';
+import { fromEvent, Observable } from 'rxjs';
+import { ConnectionService } from 'ng-connection-service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
   @HostBinding('class') classlist = 'dt-root';
 
   route: string;
@@ -23,11 +25,11 @@ export class AppComponent {
   onSettingChanged: Subscription;
 
   constructor(public translate: TranslateService,
-              public authService: AuthService,
-              public settingService: SettingsService,
-              public ngProgress: NgProgress,
-              private router: Router,
-              location: Location) {
+    public authService: AuthService,
+    public settingService: SettingsService,
+    public ngProgress: NgProgress,
+    private router: Router,
+    location: Location) {
     // set translation
     translate.addLangs(['en', 'es']);
     translate.setDefaultLang('en');
@@ -59,7 +61,7 @@ export class AppComponent {
         this.isAuthenticated = this.authService.isAuthenticated();
         this.ngProgress.done();
 
-        const {fragment} = router.parseUrl(router.url);
+        const { fragment } = router.parseUrl(router.url);
         if (fragment) {
           const element = document.querySelector(`#${fragment}`);
           if (element) {
@@ -73,10 +75,14 @@ export class AppComponent {
       this.route = location.path();
     });
 
-    firebase.initializeApp({
-      apiKey: 'AIzaSyA_dc3Eztlksb2pyYYVKKXjl-RuM6zrsos',
-      authDomain: 'drift-angular.firebaseapp.com'
-    });
+    // firebase.initializeApp({
+    //   apiKey: 'AIzaSyA_dc3Eztlksb2pyYYVKKXjl-RuM6zrsos',
+    //   authDomain: 'drift-angular.firebaseapp.com'
+    // });
   }
-
+  ngOnInit(): void {
+  }
+  ngOnDestroy(): void {
+  }
 }
+

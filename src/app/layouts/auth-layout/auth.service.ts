@@ -1,30 +1,31 @@
-import { ReturnStatement } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { NotificationService } from '@app/content/service/notification.service';
+
 @Injectable()
 export class AuthService {
   token: any;
-  message : any;
+  message: any;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private notify: NotificationService) {
   }
   signinUser(username: string, password: string) {
-    
-    if (username === 'sa' && password === 'ok123') {
-      this.token = 1 ;
+
+    if (username === 'okchalo' && password === '123') {
+      this.token = 6;
       localStorage.setItem('currentUser', this.token);
       this.message = "Login Successfully";
-      localStorage.setItem('logininfo', this.message);
+      this.notify.showSuccess(this.message);
       if (this.activatedRoute.snapshot.queryParams.returnUrl) {
         this.router.navigate([this.activatedRoute.snapshot.queryParams.returnUrl]);
       } else {
         this.router.navigate(['/dashboard']);
       }
     }
-    else{
-      this.message="Username and Password is not Matched";
-      localStorage.setItem('logininfo', this.message);
+    else {
+      this.message = "Username and Password is not Matched";
+      this.notify.showError(this.message);
+
     }
   }
 

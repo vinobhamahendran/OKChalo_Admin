@@ -1,0 +1,15 @@
+.close:focus{
+    outline: none;
+}
+.close{
+    margin: -2.6rem -1.6rem -1.6rem auto;
+    font-size: 3rem;
+    color: #000;
+}
+.is-invalid{
+    background-image: none;
+}
+.form-group.required .control-label:after {
+    content:"*";
+    color:red;
+}

@@ -21,6 +21,7 @@ export class DriverListComponent implements OnInit, OnDestroy {
   dtTrigger: Subject<any> = new Subject();
   bloodgrouplist: any = [];
   finaldata: any;
+  loading = true;
   constructor(private service: DriversService, private masterservice: MastersService, private router: Router, private modelService: NgbModal) { }
 
   getAllDrivers() {
@@ -33,13 +34,8 @@ export class DriverListComponent implements OnInit, OnDestroy {
           bloodgroup: { ...a3.find((item1) => (item1.blood_group_id === driver.blood_group_id) && item1) },
           ...driver
         }));
-
-      console.log(mergeById(res, this.languagelist, this.bloodgrouplist));
       this.drivers = mergeById(res, this.languagelist, this.bloodgrouplist);
       this.dtTrigger.next();
-    },
-    (error)=>{
-      console.log(error);
     }
     )
   }
@@ -47,21 +43,15 @@ export class DriverListComponent implements OnInit, OnDestroy {
     const ref = this.modelService.open(ViewDriverComponent, { size: 'lg', centered: true, backdrop: true });
     ref.componentInstance.datas = datas;
   }
-  getlanguageList() {
+  getlanguageList() {  
     this.masterservice.getLanguageList().subscribe(res => {
       this.languagelist = res;
-    },
-    (error)=>{
-      console.log(error);
     })
   }
 
   getBloodgroup() {
     this.masterservice.getBloodGroupList().subscribe(res => {
       this.bloodgrouplist = res;
-    },
-    (error)=>{
-      console.log(error);
     })
   }
   ngOnInit(): void {

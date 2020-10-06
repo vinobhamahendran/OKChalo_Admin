@@ -1,7 +1,9 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DriversService } from '@app/content/service/drivers.service';
 import { DriverModel } from '@app/data-db/model/driverModel';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DriverEditComponent } from '../driver-edit/driver-edit.component';
 
 @Component({
   selector: 'app-view-driver',
@@ -17,21 +19,24 @@ export class ViewDriverComponent implements OnInit {
   };
   datas:any;
   _vehicleinfo:any;
-  constructor(public modal:NgbActiveModal,private service:DriversService) { }
+  novehicel = false;
+  constructor(public modal:NgbActiveModal,private service:DriversService,private router: Router, private modelService: NgbModal) { }
 
   ngOnInit(): void {
-    console.log(this.datas);
     this.vehicleinfo();
   }
   vehicleinfo(){
     this.service.getVehicleByDriverId(this.datas.driver_id).subscribe(res =>{
         this._vehicleinfo =res;
-        console.log(res);
     },
     (error)=>{
-      console.log(error.error.message);
+      this.novehicel = true;
     })
     
+  }
+  addVehicleInfo(datas: any) {
+    const ref = this.modelService.open(DriverEditComponent, { size: 'xl', centered: true, backdrop: true });
+    ref.componentInstance.datas = datas;
   }
 
 }

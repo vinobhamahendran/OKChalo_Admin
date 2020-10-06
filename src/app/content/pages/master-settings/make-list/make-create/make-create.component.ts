@@ -32,14 +32,9 @@ export class MakeCreateComponent implements OnInit {
     if(this.makeform.invalid){
       return;
     }
-    console.log(this.makeform.value);
     this.service.createMake(this.makeform.value).subscribe( res => {
-      console.log(res);
       this.modal.close();
       this.opensuccessalert();
-    },
-    (error)=>{
-      console.log(error);
     })
 
   }

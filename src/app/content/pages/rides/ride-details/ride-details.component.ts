@@ -12,6 +12,7 @@ declare var $: any;
   styleUrls: ['./ride-details.component.scss']
 })
 export class RideDetailsComponent implements OnInit, OnDestroy {
+  
   breadcrumb = [{ label: 'Home', route: '/dashboard' }, { label: 'Ride Details', active: true }]
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
@@ -39,7 +40,7 @@ export class RideDetailsComponent implements OnInit, OnDestroy {
       order: [0, 'desc'] //asc,desc
     }
     $('.statusfilter').on('change', function () {
-      var v = $(this).val();  // getting search input value
+      var v = $(this).val();
       $('#dataTables-example').DataTable().columns(7).search(v).draw();
     });
 
@@ -51,26 +52,17 @@ export class RideDetailsComponent implements OnInit, OnDestroy {
   passengerlist() {
     this.passengerservice.getAll().subscribe(res => {
       this._passengerlist = res;
-    },
-      (error) => {
-        console.log(error);
-      })
+    })
   }
   driverlist() {
     this.driverservice.getAllDriver().subscribe(res => {
       this._driverlist = res;
-    },
-      (error) => {
-        console.log(error);
-      })
+    })
   }
   statuslist() {
     this.masterservice.getStatusList().subscribe(res => {
       this._statuslist = res;
-    },
-      (error) => {
-        console.log(error);
-      })
+    })
   }
 
   allRides() {
@@ -86,16 +78,11 @@ export class RideDetailsComponent implements OnInit, OnDestroy {
           ...itm
         }));
       this.rideDetails = mergeById(response, this._passengerlist, this._driverlist, this._statuslist);
-      console.log(this.rideDetails);
       this.dtTrigger.next();
-    },
-      (error) => {
-        console.log(error);
-      })
+    })
   }
 
   viewRides(id: any) {
-    console.log(id);
     this.route.navigate(['/view-ride-details', id]);
   }
 

@@ -103,7 +103,6 @@ export class DashboardComponent implements OnInit {
   constructor() {
   }
   ngOnInit(): void {
-    console.log(this.pieChart.data)
   }
 
   public chartClicked(e: any): void {

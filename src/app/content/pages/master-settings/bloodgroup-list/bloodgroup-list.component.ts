@@ -23,11 +23,7 @@ export class BloodgroupListComponent implements OnInit {
 
   bloodGroupList(){
     this.service.getBloodGroupList().subscribe(res =>{
-      console.log(res);
       this.bloodGroupData = res;
-    },
-    (error)=>{
-      console.log(error);
     })
   }
   addbloodGroupModal(){

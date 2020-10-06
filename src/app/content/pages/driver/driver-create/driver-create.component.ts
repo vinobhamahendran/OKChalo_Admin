@@ -3,7 +3,8 @@ import { FormArray, FormBuilder, FormGroup, NgForm, Validators } from '@angular/
 import { Router } from '@angular/router';
 import { DriversService } from '@app/content/service/drivers.service';
 import { MastersService } from '@app/content/service/masters.service';
-import Swal from 'sweetalert2';
+import { NotificationService } from '@app/content/service/notification.service';
+
 
 @Component({
   selector: 'app-driver-create',
@@ -20,7 +21,7 @@ export class DriverCreateComponent implements OnInit {
   submitted = false;
 
   constructor(private service: DriversService, public formBuilder: FormBuilder,
-    private languageservice: MastersService, private router: Router) {
+    private languageservice: MastersService, private router: Router,private notify:NotificationService) {
     this.vehicleform = this.formBuilder.group({
       vehicles: this.formBuilder.array([]),
     });
@@ -62,57 +63,38 @@ export class DriverCreateComponent implements OnInit {
   }
   get f() { return this.driverform.controls; }
   get vehicle() { return this.vehicleform.get("vehicles") as FormArray }
-  opensuccessalert() {
-    Swal.fire('Success', 'Driver Added Successfully!', 'success');
-  }
   addDriver() {
     this.submitted = true;
     if (this.driverform.invalid || this.vehicle.invalid) {
       return;
     }
-    console.log(this.vehicleform.value, this.driverform.value)
     this.service.addDriver(this.driverform.value).subscribe(resp => {
       this.vehicle.value.forEach(element => {
         element.driver_id = resp.id;
         this.service.addVehicle(element).subscribe(res => {
         });
-
       });
-
-    },
-    (error)=>{
-      console.log(error);
     });
-    
-    this.opensuccessalert();
+    this.submitted = false;
+    this.notify.showSuccess('Driver Added successfully');
     this.driverform.reset();
     this.vehicleform.reset();
-    this.submitted = false;
+    
   }
 
   getlanguagelist() {
     this.languageservice.getLanguageList().subscribe(res => {
       this.languagelist = res;
-    },
-    (error)=>{
-      console.log(error);
     })
   }
   getBloodGrouplist() {
     this.languageservice.getBloodGroupList().subscribe(res => {
       this.bloodGrouplist = res;
-    },
-    (error)=>{
-      console.log(error);
     })
   }
   getvehicletype() {
     this.languageservice.getVehicleType().subscribe(res => {
       this.vehicletype = res;
-      console.log(res);
-    },
-    (error)=>{
-      console.log(error);
     })
   }
 

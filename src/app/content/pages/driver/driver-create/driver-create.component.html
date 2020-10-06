@@ -17,8 +17,8 @@
           <div class="col-sm-6 mb-3 form-group required">
             <label class="control-label" for="firstname">First name</label>
             <input type="text" class="form-control" id="firstname" placeholder="First name" formControlName="first_name"
-              [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }">
-            <div *ngIf="f.first_name.errors" class="invalid-feedback">
+              [ngClass]="{ 'is-invalid': submitted && f.first_name.errors}">
+            <div *ngIf="f.first_name.errors && f.first_name.touched " class="invalid-feedback">
               <div *ngIf="submitted && f.first_name.errors.required">First Name is required</div>
             </div>
           </div>
@@ -112,7 +112,7 @@
                     formControlName="vehicle_registration_number"
                     [ngClass]="{'is-invalid':submitted && vehicle.controls[vehicleIndex].get('vehicle_registration_number').errors}">
                     <div *ngIf="vehicle.controls[vehicleIndex].get('vehicle_registration_number').errors" class="invalid-feedback">
-                      <div *ngIf="submitted && vehicle.controls[vehicleIndex].get('vehicle_registration_number').errors.required" style="margin-left: 30px; margin-top: -5px;">
+                      <div *ngIf="submitted && vehicle.controls[vehicleIndex].get('vehicle_registration_number').errors.required">
                       Vehicle Registration Number is required</div>
                     </div>
                   </div>
@@ -124,7 +124,7 @@
                       {{vehicletypedata.vehicle_type}}</option>
                   </select>
                   <div *ngIf="vehicle.controls[vehicleIndex].get('vehicle_type_id').errors" class="invalid-feedback">
-                    <div *ngIf="submitted && vehicle.controls[vehicleIndex].get('vehicle_type_id').errors.required">Vehicle
+                    <div *ngIf="submitted && vehicle.controls[vehicleIndex].get('vehicle_type_id').errors.required">Vehicle Type
                       is required</div>
                   </div>
                 </div>
@@ -132,18 +132,19 @@
               <div class="form-row mb-4">
                 <div class="col-sm-6 mb-3 form-group">
                   <label class="control-label" for="capacity">Capacity</label>
-                  <input type="text" class="form-control" id="capacity" placeholder="Vehicle Model"
+                  <input type="text" class="form-control" id="capacity" placeholder="Capacity"
                     formControlName="capacity" [ngClass]="{'is-invalid':submitted && vehicle.controls[vehicleIndex].get('capacity').errors}">
                     <div *ngIf="vehicle.controls[vehicleIndex].get('capacity').errors" class="invalid-feedback">
                       <div *ngIf="submitted && vehicle.controls[vehicleIndex].get('capacity').errors.required">Capacity
                         is required</div>
                     </div>
                   </div>
+                  <div class="col-sm-6 my-6 form-group">
+                    <button (click)="removeVehicle(vehicleIndex)"
+                      class="btn btn-danger btn-sm text-uppercase">Remove</button>
+                  </div>
                 </div>
-                <div class="col-sm-6 my-6 form-group">
-                  <button (click)="removeVehicle(vehicleIndex)"
-                    class="btn btn-danger btn-sm text-uppercase">Remove</button>
-                </div>
+                
               </div>
 
             </div>
