@@ -15,6 +15,7 @@ export class SigninComponent {
   message:any;
   title : any;
   icon: any;
+  fieldTextType: boolean;
   constructor(private router : Router, private authService: AuthService,
     private formBuilder : FormBuilder) { 
       this.loginForm = this.formBuilder.group({
@@ -33,5 +34,8 @@ export class SigninComponent {
     }
     console.log(this.loginForm.value)
     this.authService.signinUser(this.f.username.value, this.f.password.value);
+  }
+  toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
   }
 }

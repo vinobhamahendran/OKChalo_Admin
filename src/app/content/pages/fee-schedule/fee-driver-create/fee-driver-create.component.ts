@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-fee-driver-create',
@@ -7,10 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeeDriverCreateComponent implements OnInit {
   breadcrumb = [{label: 'Home',route: '/dashboard'},{label: 'Fee Schedule - Driver',route:'/fee/driver/list'},{label:'Create',active:true}];
-
-  constructor() { }
+  feedriverform : FormGroup;
+  constructor(private formbuilder : FormBuilder) {
+    this.feedriverform = formbuilder.group({
+      signupfee:[],
+      signupcredit:[],
+      ridefee:[],
+      ridecommission:[]
+    })
+   }
 
   ngOnInit(): void {
+  }
+  onsubmit(){
+    console.log(this.feedriverform.value);
+    this.feedriverform.reset();
   }
 
 }

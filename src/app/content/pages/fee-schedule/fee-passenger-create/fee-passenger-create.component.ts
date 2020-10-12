@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,10 +10,21 @@ import { Router } from '@angular/router';
 export class FeePassengerCreateComponent implements OnInit {
   breadcrumb = [{label: 'Home',route: '/dashboard'},{label: 'Fee Schedule - Passenger',route:'/fee/passenger/list'},
   {label:'Create',active:true}];
-  
+  feepassengerform: FormGroup;
 
-  constructor(private router :Router) { }
+  constructor(private formbuilder : FormBuilder) {
+    this.feepassengerform = formbuilder.group({
+      signupfee:[],
+      signupcredit:[],
+      ridefee:[],
+      ridecommission:[]
+    })
+   }
   ngOnInit(): void {
   }
 
+  onsubmit(){
+    console.log(this.feepassengerform.value);
+    this.feepassengerform.reset();
+  }
 }

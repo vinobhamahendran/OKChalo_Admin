@@ -1,50 +1,53 @@
 <div class="container-fluid">
-<div class="row">
+  <div class="row">
     <div class="col-md-12">
       <img class="mx-auto d-block img-fluid logo" src="assets/images/logo.png">
-    </div> 
-</div> 
-<div class="row"> 
+    </div>
+  </div>
+  <div class="row">
     <div class="col-xl-12">
       <div class="">
         <h1 class="text-center">Admin Login</h1>
-      <div class="dt-login__content">  
-        <div class="dt-login__content-inner">
-          <form [formGroup]="loginForm" (ngSubmit)="onSubmitSignIn()">
+        <div class="dt-login__content">
+          <div class="dt-login__content-inner">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmitSignIn()">
               <div class="form-group">
-              <label class="" for="username">Username</label>
-              <input type="text"
-                     class="form-control"
-                     id="username"
-                      required formControlName="username" [ngClass]="{'is-invalid':formsubmitted && f.username.errors}">
-                      <div *ngIf="formsubmitted && f.username.errors" class="invalid-feedback">
-                        <div *ngIf="f.username.errors.required">Username is required</div>
-                      </div>
-            </div>
-            <div class="form-group">
-              <label class="" for="password">password</label>
-              <input type="password"
-                     class="form-control"
-                     id="password"
-                      required formControlName="password" [ngClass]="{'is-invalid': formsubmitted && f.password.errors}">
-                      <div *ngIf="formsubmitted && f.password.errors" class="invalid-feedback">
-                        <div *ngIf="f.password.errors.required">Password is required</div>
-                      </div>
-            </div>
-  
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary text-uppercase">Login</button>
+                <label class="" for="username">Username</label>
+                <input type="text" class="form-control" id="username" required formControlName="username"
+                  [ngClass]="{'is-invalid':formsubmitted && f.username.errors}">
+                <div *ngIf="formsubmitted && f.username.errors" class="invalid-feedback">
+                  <div *ngIf="f.username.errors.required">Username is required</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="" for="password">password</label>
+                <div class="input-group">
+                  <input [type]="fieldTextType ? 'text' : 'password'" class="form-control" id="password" required formControlName="password"
+                    [ngClass]="{'is-invalid': formsubmitted && f.password.errors}">
+                  <div class="input-group-append">
+                    <span class="input-group-text">
+                      <i class="fa" [ngClass]="{
+                            'fa-eye-slash': !fieldTextType,
+                            'fa-eye': fieldTextType
+                          }" (click)="toggleFieldTextType()"></i></span>
+                  </div>
+                  <div *ngIf="formsubmitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                  </div>
+                </div>
+              </div>
 
-            </div>
-    
-          </form>
-    
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary text-uppercase">Login</button>
+
+              </div>
+
+            </form>
+
+          </div>
+
         </div>
-    
-      </div>
       </div>
     </div>
+  </div>
 </div>
-</div>
-  
-  

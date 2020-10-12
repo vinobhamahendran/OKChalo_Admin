@@ -107,8 +107,8 @@
             <div [formGroupName]="vehicleIndex">
               <div class="form-row mb-4">
                 <div class="col-sm-6 mb-3 form-group">
-                  <label class="control-label" for="vehicleno">Vehicle Registration Number</label>
-                  <input type="text" class="form-control" id="vehicleno" placeholder="Vehicle Number"
+                  <label class="control-label" for="vehicleno{{vehicleIndex+1}}">Vehicle Registration Number</label>
+                  <input type="text" class="form-control" id="vehicleno{{vehicleIndex+1}}" placeholder="Vehicle Number"
                     formControlName="vehicle_registration_number"
                     [ngClass]="{'is-invalid':submitted && vehicle.controls[vehicleIndex].get('vehicle_registration_number').errors}">
                     <div *ngIf="vehicle.controls[vehicleIndex].get('vehicle_registration_number').errors" class="invalid-feedback">
@@ -117,8 +117,8 @@
                     </div>
                   </div>
                 <div class="col-sm-6 mb-3 form-group">
-                  <label class="control-label" for="vehicletype">Vehicle Type</label>
-                  <select class="form-control" id="vehicletype" formControlName="vehicle_type_id" [ngClass]="{'is-invalid':submitted && vehicle.controls[vehicleIndex].get('vehicle_type_id').errors}">
+                  <label class="control-label" for="vehicletype{{vehicleIndex+1}}">Vehicle Type</label>
+                  <select class="form-control" id="vehicletype{{vehicleIndex+1}}" formControlName="vehicle_type_id" [ngClass]="{'is-invalid':submitted && vehicle.controls[vehicleIndex].get('vehicle_type_id').errors}">
                     <option [ngValue]='null' disabled selected>Select Vehicle Type</option>
                     <option *ngFor="let vehicletypedata of vehicletype" [ngValue]="vehicletypedata.vehicle_type_id">
                       {{vehicletypedata.vehicle_type}}</option>
@@ -131,8 +131,8 @@
               </div>
               <div class="form-row mb-4">
                 <div class="col-sm-6 mb-3 form-group">
-                  <label class="control-label" for="capacity">Capacity</label>
-                  <input type="text" class="form-control" id="capacity" placeholder="Capacity"
+                  <label class="control-label" for="capacity{{vehicleIndex+1}}">Capacity</label>
+                  <input type="text" class="form-control" id="capacity{{vehicleIndex+1}}" placeholder="Capacity"
                     formControlName="capacity" [ngClass]="{'is-invalid':submitted && vehicle.controls[vehicleIndex].get('capacity').errors}">
                     <div *ngIf="vehicle.controls[vehicleIndex].get('capacity').errors" class="invalid-feedback">
                       <div *ngIf="submitted && vehicle.controls[vehicleIndex].get('capacity').errors.required">Capacity

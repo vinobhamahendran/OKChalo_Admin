@@ -64,10 +64,11 @@ export class DriverCreateComponent implements OnInit {
   get f() { return this.driverform.controls; }
   get vehicle() { return this.vehicleform.get("vehicles") as FormArray }
   addDriver() {
-    this.submitted = true;
-    if (this.driverform.invalid || this.vehicle.invalid) {
-      return;
-    }
+    // this.submitted = true;
+    // if (this.driverform.invalid || this.vehicle.invalid) {
+    //   return;
+    // }
+    console.log(this.vehicleform.value);
     this.service.addDriver(this.driverform.value).subscribe(resp => {
       this.vehicle.value.forEach(element => {
         element.driver_id = resp.id;
