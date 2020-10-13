@@ -18,7 +18,7 @@
             <label class="control-label" for="firstname">First name</label>
             <input type="text" class="form-control" id="firstname" placeholder="First name" formControlName="first_name"
               [ngClass]="{ 'is-invalid': submitted && f.first_name.errors}">
-            <div *ngIf="f.first_name.errors && f.first_name.touched " class="invalid-feedback">
+            <div *ngIf="f.first_name.errors" class="invalid-feedback">
               <div *ngIf="submitted && f.first_name.errors.required">First Name is required</div>
             </div>
           </div>
